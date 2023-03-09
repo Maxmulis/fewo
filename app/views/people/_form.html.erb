@@ -1,11 +1,13 @@
     <%= form_with model: person do |form| %>
       <div class="grid">
 
-        <%= form.label :first_name, "Vorname" do %>
-          <%= form.text_field :first_name, placeholder: "Vorname"  %>
+        <%= form.label :first_name do %>
+          Vorname
+          <%= form.text_field :first_name, placeholder: "Vorname", required: true  %>
         <% end %>
 
-        <%= form.label :last_name, "Nachname" do %>
+        <%= form.label :last_name do %>
+          Nachname
           <%= form.text_field :last_name, placeholder: "Nachname"  %>
         <% end %>
 
@@ -13,11 +15,13 @@
 
       <div class="grid">
 
-        <%= form.label :dob, "Geburtsdatum" do %>
+        <%= form.label :dob do %>
+          Geburtsdatum
           <%= form.date_field :dob %>
         <% end %>
 
-       <%= form.label :street, "Adresse" do %>
+       <%= form.label :street do %>
+          Adresse
           <%= form.text_field :street, placeholder: "Adresse"  %>
         <% end %>
 
@@ -25,10 +29,13 @@
 
       <div class="grid">
 
-        <%= form.label :zip_code, "PLZ" %>
-        <%= form.text_field :zip_code, placeholder: "PLZ"  %>
+        <%= form.label :zip_code do %>
+          PLZ
+          <%= form.text_field :zip_code, placeholder: "PLZ"  %>
+        <% end %>
 
-        <%= form.label :city, "Stadt" do %>
+        <%= form.label :city do %>
+          Ort
           <%= form.text_field :city, placeholder: "Ort"  %>
         <% end %>
 
