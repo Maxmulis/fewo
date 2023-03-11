@@ -11,8 +11,7 @@ fabian = Person.new(last_name: "Dinkel", first_name: "Fabian", email: "test@test
 
 fabian.save!
 
-theo = Person.new(last_name: "Dinkel", first_name: "Theo", email: "test@test.com", dob: "31-10-2015", street: "Street", zip: "12345", city: "Ba
-sel", country_code: "CH")
+theo = Person.new(last_name: "Dinkel", first_name: "Theo", email: "test@test.com", dob: "31-10-2015", street: "Street", zip: "12345", city: "Basel", country_code: "CH")
 theo.save!
 
 camp = Camp.new(place: "Zinal", startdate: "31-10-2023", enddate: "11-11-2023")
