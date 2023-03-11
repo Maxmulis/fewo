@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  arrival_date: 2022-11-20
+  departure_date: 2022-11-20
+  camp: one
+  room: one
+  person: one
+
+two:
+  arrival_date: 2022-11-20
+  departure_date: 2022-11-20
+  camp: two
+  room: two
+  person: two

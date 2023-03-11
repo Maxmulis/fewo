@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  floor: MyString
+  capacity: 1
+  camp: one
+
+two:
+  number: MyString
+  floor: MyString
+  capacity: 1
+  camp: two

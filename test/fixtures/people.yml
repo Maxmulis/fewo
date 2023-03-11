@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  last_name: MyString
+  first_name: MyString
+  dob: 2022-11-20
+  address: MyString
+  zip: MyString
+  city: MyString
+  country: MyString
+
+two:
+  last_name: MyString
+  first_name: MyString
+  dob: 2022-11-20
+  address: MyString
+  zip: MyString
+  city: MyString
+  country: MyString
