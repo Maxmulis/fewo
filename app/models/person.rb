@@ -8,7 +8,15 @@ class Person < ApplicationRecord
     calculate_age_at_camp_start(camp) < 18
   end
 
-  def calculate_age_at_camp_start(camp)
+  def age_at_camp_start(camp)
     (camp.startdate - dob).to_i / 365.25
+  end
+
+  def age
+    (Date.today - dob).to_i / 365.25
+  end
+
+  def minor?
+    age < 18
   end
 end

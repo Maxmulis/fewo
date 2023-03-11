@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   def index
+    @people = Person.includes(:registrations, :responsibilities).order(last_name: :asc)
   end
 
   def new
