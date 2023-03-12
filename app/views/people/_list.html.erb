@@ -14,7 +14,11 @@
         <th scope="row"><%= person.last_name %></th>
         <td><%= person.first_name %> <%= " (#{person.age})" if person.minor? %></td>
         <td><%= person.city %> <%= c.emoji_flag %></td>
-        <td>Register</td>
+        <% if person.registered_for_camp?(camp) %>
+          <td><a href="" role=button>Abmelden</a></td>
+        <% else %>
+          <td><%= button_to 'Ánmelden', camp_new_registrations_path(camp_id: camp.id , person_id: person.id), role: 'button', method: :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -26,4 +26,8 @@ class Person < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def registered_for_camp?(camp)
+    camps.include?(camp)
+  end
 end
