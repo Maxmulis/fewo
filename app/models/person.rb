@@ -8,7 +8,7 @@ class Person < ApplicationRecord
   validates_presence_of :last_name, :first_name, :dob, :street, :zip, :city, :country_code
 
   def minor_during_camp?(camp)
-    calculate_age_at_camp_start(camp) < 18
+    age_at_camp_start(camp) < 18
   end
 
   def age_at_camp_start(camp)
