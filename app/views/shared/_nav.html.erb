@@ -12,6 +12,14 @@
         </ul>
       </details>
     </li>
-   
+    <% c = Camp.next %>
+    <li>
+      <details role="list">
+        <summary aria-haspopup="listbox">Lager</summary>
+        <ul role="listbox">
+          <li> <%= link_to "#{c.place} #{c.year}", camp_path(c) %></li>
+        </ul>
+      </details>
+    </li>
   </ul>
 </nav>
