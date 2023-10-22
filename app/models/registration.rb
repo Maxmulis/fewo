@@ -8,8 +8,14 @@ class Registration < ApplicationRecord
   validate :arrival_date_before_departure
 
   after_destroy :destroy_household_registrations_if_no_adults
+  after_initialize :set_default_dates
 
   private
+
+  def set_default_dates
+    self.arrival_date = camp.start_date
+    self.departure_date = camp.end_date
+  end
 
   def destroy_household_registrations_if_no_adults
     household = person.household
