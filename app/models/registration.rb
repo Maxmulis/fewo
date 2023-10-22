@@ -7,7 +7,19 @@ class Registration < ApplicationRecord
   validate :underage_requires_adult_household_member
   validate :arrival_date_before_departure
 
+  after_destroy :destroy_household_registrations_if_no_adults
+
   private
+
+  def destroy_household_registrations_if_no_adults
+    household = person.household
+    camp_registrations = Registration.where(camp: camp, person: household.people)
+
+    if camp_registrations.none? { |registration| registration.person.adult_at_camp?(camp) }
+      camp_registrations.destroy_all
+    end
+  end
+
 
   def person_has_household
     unless person.household
