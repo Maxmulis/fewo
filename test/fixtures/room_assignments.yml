@@ -3,11 +3,9 @@
 one:
   person: one
   camp: one
-  arrival_date: 2023-10-21
-  departure_date: 2023-10-21
+  room: one
 
 two:
   person: two
   camp: two
-  arrival_date: 2023-10-21
-  departure_date: 2023-10-21
+  room: two

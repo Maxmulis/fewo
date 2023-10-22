@@ -1,27 +1,24 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
-fabian = Person.new(last_name: "Dinkel", first_name: "Fabian", email: "test@test.com", dob: "31-10-1991", street: "Street", zip: "12345", city:
- "Basel", country_code: "CH")
-
-fabian.save!
-
-theo = Person.new(last_name: "Dinkel", first_name: "Theo", email: "test@test.com", dob: "31-10-2015", street: "Street", zip: "12345", city: "Basel", country_code: "CH")
-theo.save!
-
-camp = Camp.new(place: "Zinal", startdate: "31-10-2023", enddate: "11-11-2023")
+place = Place.new(name: "Zinal")
+camp = Camp.new(start_date: Date.new(2024, 10, 6), end_date: Date.new(2024, 10, 12))
+camp.place = place
 camp.save!
 
-theo_reg = Registration.new(camp: camp, arrival_date:'31-10-2023', departure_date: '3-11-2023', person: theo)
-theo_reg.save!
+puts "Created camp from #{camp.start_date} to #{camp.end_date} in #{camp.place.name}"
 
-fabian_reg = Registration.new(camp: camp, arrival_date:'31-10-2023', departure_date: '3-11-2023', person: fabian)
-fabian_reg.save!
+address = Address.new(street: "Teststr.", zip_code: "12345", number: "42", country_code: "CH", town: "Basel")
+address.save!
+household = Household.new()
+household.address = address
+household.save!
 
-responsibility = Responsibility.new(person: fabian, registration: theo_reg)
-responsibility.save!
+puts "Created household based in #{address.street}, #{address.town}"
+
+underage = Person.new(name: "Dinkel", first_name: "Theo", dob: Date.new(2017, 05, 22))
+underage.household = household
+underage.save!
+
+adult = Person.new(name: "Dinkel", first_name: "Fabian", dob: Date.new(1992, 07, 25))
+adult.household = household
+adult.save!
+
+puts "Created #{underage.first_name}, aged #{underage.age_at_camp(camp)} in #{camp.place.name}"

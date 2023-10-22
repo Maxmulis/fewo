@@ -1,13 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  place: one
-  floor: 1
-  capacity: 1
-  number: 1
+  group: one
+  person: one
 
 two:
-  place: two
-  floor: 1
-  capacity: 1
-  number: 1
+  group: two
+  person: two

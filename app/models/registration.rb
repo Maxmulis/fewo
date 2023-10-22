@@ -1,28 +1,32 @@
 class Registration < ApplicationRecord
-  belongs_to :camp
-  belongs_to :room, optional: true
   belongs_to :person
-  has_many :responsibilities
-  has_many :responsibles, through: :responsibilities, source: :person
+  belongs_to :camp
 
-  # validate :has_responsible, if: :minor?
+  validate :person_has_group
+  validate :underage_requires_adult_group_member
+  validate :arrival_date_before_departure
 
   private
 
-  def minor?
-    person.minor_during_camp?(camp)
-  end
-  
-  def has_responsible
-    return if responsibles.present?
-    errors.add(:base, "A minor must have at least one responsible person")
+  def person_has_household
+    unless person.household
+      errors.add(:person, "must belong to a household to register for a camp.")
+    end
   end
 
-  def has_responsible?
-    responsibles.present?
+  def underage_requires_adult_household_member
+    if person.underage_at_camp?(camp) && !adult_household_member_registered?
+      errors.add(:person, "requires an adult member of the household to be already registered if underage.")
+    end
   end
 
-  def has_no_responsible?
-    !has_responsible?
+  def arrival_date_before_departure
+    if arrival_date && departure_date && arrival_date >= departure_date
+      errors.add(:departure_date, "must be after arrival date.")
+    end
+  end
+
+  def adult_household_member_registered?
+    person.household.people.any? { |household_member| household.adult_at_camp?(camp) && group_member.registered_for?(camp) }
   end
 end

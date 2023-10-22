@@ -1,33 +1,21 @@
 class Person < ApplicationRecord
-  has_many :registrations
+  belongs_to :household
   has_many :camps, through: :registrations
-  has_many :responsibilities
-  has_many :minors, through: :responsibilities, source: :registration
 
-  validates :last_name, uniqueness: { scope: [ :first_name, :dob ], message: "Person already exists" }
-  validates_presence_of :last_name, :first_name, :dob, :street, :zip, :city, :country_code
-
-  def minor_during_camp?(camp)
-    age_at_camp_start(camp) < 18
+  def age_at_camp(camp)
+    ((camp.start_date - dob) / 365.25).floor
   end
 
-  def age_at_camp_start(camp)
-    (camp.startdate - dob).to_i / 365.25
+  def underage_at_camp?(camp)
+    age_at_camp(camp) < 18
   end
 
-  def age
-    ((Date.today - dob).to_i / 365.25).floor
-  end
-
-  def minor?
-    age < 18
-  end
-
-  def full_name
-    "#{first_name} #{last_name}"
+  def adult_at_camp?(camp)
+    !underage_at_camp?(camp)
   end
 
   def registered_for_camp?(camp)
     camps.include?(camp)
   end
+
 end
