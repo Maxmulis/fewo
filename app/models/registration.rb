@@ -2,8 +2,9 @@ class Registration < ApplicationRecord
   belongs_to :person
   belongs_to :camp
 
-  validate :person_has_group
-  validate :underage_requires_adult_group_member
+  validates_uniqueness_of :person, scope: :camp
+  validate :person_has_household
+  validate :underage_requires_adult_household_member
   validate :arrival_date_before_departure
 
   private
@@ -27,6 +28,6 @@ class Registration < ApplicationRecord
   end
 
   def adult_household_member_registered?
-    person.household.people.any? { |household_member| household.adult_at_camp?(camp) && group_member.registered_for?(camp) }
+    person.household.people.any? { |household_member| household_member.adult_at_camp?(camp) && household_member.registered_for?(camp) }
   end
 end

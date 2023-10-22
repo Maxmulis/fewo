@@ -1,5 +1,6 @@
 class Person < ApplicationRecord
   belongs_to :household
+  has_many :registrations
   has_many :camps, through: :registrations
 
   def age_at_camp(camp)
@@ -14,7 +15,7 @@ class Person < ApplicationRecord
     !underage_at_camp?(camp)
   end
 
-  def registered_for_camp?(camp)
+  def registered_for?(camp)
     camps.include?(camp)
   end
 
