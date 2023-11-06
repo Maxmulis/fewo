@@ -1,7 +1,14 @@
 class Person < ApplicationRecord
-  belongs_to :household
+  belongs_to :household, optional: true
   has_many :registrations
   has_many :camps, through: :registrations
+
+  validates :first_name, :name, :dob, presence: true
+  validates :first_name, :name, uniqueness: { scope: :dob }
+
+  def full_name
+    "#{first_name} #{name}"
+  end
 
   def age_at_camp(camp)
     ((camp.start_date - dob) / 365.25).floor

@@ -3,59 +3,18 @@
 
         <%= form.label :first_name do %>
           Vorname
-          <%= form.text_field :first_name, placeholder: "Vorname"  %>
+          <%= form.text_field :first_name, placeholder: "Vorname", value: person.first_name  %>
         <% end %>
 
-        <%= form.label :last_name do %>
+        <%= form.label :name do %>
           Nachname
-          <%= form.text_field :last_name, placeholder: "Nachname"  %>
+          <%= form.text_field :name, placeholder: "Nachname", value: person.name  %>
         <% end %>
-
-      </div>
-
-      <div class="grid">
 
         <%= form.label :dob do %>
           Geburtsdatum
           <%= form.date_field :dob %>
         <% end %>
-
-       <%= form.label :street do %>
-          Adresse
-          <%= form.text_field :street, placeholder: "Adresse"  %>
-        <% end %>
-
       </div>
-
-      <div class="grid">
-
-        <%= form.label :zip do %>
-          PLZ
-          <%= form.text_field :zip, placeholder: "PLZ"  %>
-        <% end %>
-
-        <%= form.label :city do %>
-          Ort
-          <%= form.text_field :city, placeholder: "Ort"  %>
-        <% end %>
-
-      </div>
-
-      <% ch = ISO3166::Country.new('CH') %> 
-      <% de = ISO3166::Country.new('DE') %> 
-      <% pl = ISO3166::Country.new('PL') %> 
-      <% fr = ISO3166::Country.new('FR') %> 
-      <% countries = [ch, de, pl, fr] + (ISO3166::Country.all.sort_by(&:iso_short_name) - [ch, de, pl, fr]) %>
-      <%= form.label :country_code, "Land" %>
-      <%= form.select :country_code, options_for_select(countries.map { |c| [c.common_name, c.alpha2] } ) %>
-
-      <%= form.label :email, "E-Mail-Adresse" %>
-      <%= form.email_field :email, placeholder: "E-Mail-Adresse"  %>
-
-      <%= form.label :phone, "Telefonnummer" %>
-      <%= form.text_field :phone, placeholder: "Telefonnummer"  %>
-
-
-      <%= form.submit %>
     <% end %>
 

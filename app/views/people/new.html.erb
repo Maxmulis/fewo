@@ -1,4 +1,5 @@
 <main> 
   <h1>Neue Person hinzufügen</h1>
   <%= render partial: 'form', locals: { person: @person } %>
+  <%= button_to 'Person speichern', people_path(@person), method: :post %>
 </main>

@@ -1,7 +1,6 @@
 class PeopleController < ApplicationController
   def index
-    @camp = Camp.next
-    @people = Person.includes(:camps).order(last_name: :asc)
+    @people = Person.all.order(name: :asc)
   end
 
   def new
@@ -22,6 +21,6 @@ class PeopleController < ApplicationController
   private
 
   def person_params
-    params.require(:person).permit(:last_name, :first_name, :dob, :street, :zip, :city, :country_code, :phone, :email)
+    params.require(:person).permit(:first_name, :name, :dob, :street, :zip, :city, :country_code, :phone, :email)
   end
 end

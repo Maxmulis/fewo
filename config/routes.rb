@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :households, only: [:index, :new, :show, :create, :edit]
   resources :people, only: [:index, :new, :show, :create, :edit, :update, :destroy]
   resources :camps, only: [:index, :show] do
     post 'registrations', to: 'registrations#create', as: 'new_registrations'
