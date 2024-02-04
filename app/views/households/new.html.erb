@@ -1,2 +1,18 @@
-<h1>Households#new</h1>
-<p>Find me in app/views/households/new.html.erb</p>
+<h1>Neuen Haushalt anlegen</h1>
+<%= form_with model: @household do |f| %>
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+  <%= f.label :number %>
+  <%= f.text_field :number %>
+  <%= f.label :zip_code %>
+  <%= f.text_field :zip_code %>
+  <%= f.label :country_code %>
+  <%= f.text_field :country_code %>
+  <%= f.label :town %>
+  <%= f.text_field :town %>
+  <%= f.submit %>
+<% end %>
+</div>
+
+
+

@@ -8,6 +8,6 @@ class CreateRegistrations < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :registrations, [:person, :camp], unique: true
+    add_index :registrations, [:person_id, :camp_id], unique: true
   end
 end

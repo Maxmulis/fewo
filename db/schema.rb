@@ -10,20 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_22_031239) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_22_031239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "zip_code"
-    t.string "number"
-    t.string "country_code"
-    t.string "town"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["street", "zip_code", "number", "country_code", "town"], name: "index_addresses_on_all_fields", unique: true
-  end
 
   create_table "camps", force: :cascade do |t|
     t.date "start_date"
@@ -35,10 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_031239) do
   end
 
   create_table "households", force: :cascade do |t|
-    t.bigint "address_id", null: false
+    t.string "street"
+    t.string "zip_code"
+    t.string "number"
+    t.string "country_code"
+    t.string "town"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_households_on_address_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -67,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_031239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_registrations_on_camp_id"
+    t.index ["person_id", "camp_id"], name: "index_registrations_on_person_id_and_camp_id", unique: true
     t.index ["person_id"], name: "index_registrations_on_person_id"
   end
 
@@ -92,7 +85,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_031239) do
   end
 
   add_foreign_key "camps", "places"
-  add_foreign_key "households", "addresses"
   add_foreign_key "people", "households"
   add_foreign_key "registrations", "camps"
   add_foreign_key "registrations", "people"

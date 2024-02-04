@@ -11,7 +11,7 @@
       <tr>
         <th scope="row"><%= person.name %></th>
         <td><%= person.first_name %></td>
-        <td><%= person.dob.strftime("%d.%m.%Y") %> link_to edit_person_path(person)</td>
+        <td><%= person.dob.strftime("%d.%m.%Y") %></td><td> <%= link_to "Edit", edit_person_path(person), role: "button", class: "secondary" %></td>
       </tr>
     <% end %>
   </tbody>

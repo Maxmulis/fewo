@@ -8,7 +8,6 @@
         <summary aria-haspopup="listbox">Teilnehmende</summary>
         <ul role="listbox">
           <li> <%= link_to 'Alle anzeigen', people_path %></li>
-          <li> <%= link_to 'Person hinzufügen', new_person_path %></li>
         </ul>
       </details>
     </li>
@@ -21,5 +20,6 @@
         </ul>
       </details>
     </li>
+    <li> <%= link_to "Alle Haushalte", households_path, role: "button", class: "outline secondary" %>
   </ul>
 </nav>

@@ -1,4 +1,11 @@
-<h1><%= @camp.place %> <%= @camp.year %></h1>
-<h3>Angemeldete Teilnehmende</h3>
-<%= render partial: 'list', locals: { people: @people, camp: @camp } %>
+<h1><%= @camp.place.name %> <%= @camp.year %></h1>
+<div class="grid">
+  <div>
+    <h5></h5>
+  </div>
+  <div>
+    <h3>Angemeldete Teilnehmende</h3>
+    <%= render partial: 'list', locals: { people: @people, camp: @camp } %>
+  </div>
+</div>
 

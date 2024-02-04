@@ -1,2 +1,13 @@
-<h1>Households#show</h1>
-<p>Find me in app/views/households/show.html.erb</p>
+<div class="grid">
+  <div>
+    🏡
+    <%= @household.street %> <%= @household.number %><br>
+    <%= @household.zip_code %> <%= @household.town %>
+  </div>
+  <div>
+    <%= link_to "Neue Person hinzufügen", new_household_person_path(@household), role: "button" %>
+    <% @household.people.each do |person| %>
+      <%= link_to person.full_name, person %><br>
+    <% end %>
+  </div>
+</div>

@@ -5,13 +5,10 @@ camp.save!
 
 puts "Created camp from #{camp.start_date} to #{camp.end_date} in #{camp.place.name}"
 
-address = Address.new(street: "Teststr.", zip_code: "12345", number: "42", country_code: "CH", town: "Basel")
-address.save!
-household = Household.new()
-household.address = address
+household = Household.new(street: "Teststr.", zip_code: "12345", number: "42", country_code: "CH", town: "Basel")
 household.save!
 
-puts "Created household based in #{address.street}, #{address.town}"
+puts "Created household based in #{household.street}, #{household.town}"
 
 underage = Person.new(name: "Dinkel", first_name: "Theo", dob: Date.new(2017, 05, 22))
 underage.household = household

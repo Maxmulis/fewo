@@ -1,0 +1,21 @@
+<%= button_to 'Neuen Haushalt anlegen', new_household_path, class: "primary", method: :get %>
+<h1>Alle Haushalte</h1>
+<% @households.each do |household| %>
+  <article>
+    <header>
+     <%= household.street %> <%= household.number %>
+      <%= household.zip_code %> <%= household.town %>
+    </header>
+    <body>
+      <ul>
+      <% household.people.each do |person| %>
+        <li><%= link_to person.full_name, edit_person_path(person) %></li>
+      <% end %>
+      </ul>
+    </body>
+    <footer>
+      <%= link_to "Person hinzufügen", new_household_person_path(household) %>
+      <%= link_to "Adresse ändern", edit_household_path(household) %>
+    </footer>
+  </article>
+<% end %>
