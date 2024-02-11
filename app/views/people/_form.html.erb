@@ -1,4 +1,4 @@
-    <%= form_with model: person do |form| %>
+    <%= form_with model: [household, person] do |form| %>
       <div class="grid">
 
         <%= form.label :first_name do %>

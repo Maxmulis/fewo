@@ -13,8 +13,8 @@ class Registration < ApplicationRecord
   private
 
   def set_default_dates
-    self.arrival_date = camp.start_date
-    self.departure_date = camp.end_date
+    self.arrival_date = Camp.next.start_date
+    self.departure_date = Camp.next.end_date
   end
 
   def destroy_household_registrations_if_no_adults

@@ -1,7 +1,7 @@
 <h1><%= @camp.place.name %> <%= @camp.year %></h1>
 <div class="grid">
   <div>
-    <h5></h5>
+    <%= button_to 'Neue Anmeldung', new_camp_registration_path(@camp), method: :get %>
   </div>
   <div>
     <h3>Angemeldete Teilnehmende</h3>

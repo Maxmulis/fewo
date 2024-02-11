@@ -1,0 +1,14 @@
+<%= form_with(model: @registration, url: camp_registrations_path(@camp), method: :post) do |form| %>
+  <%= form.select :person_id, options_for_select(@people.map { |person| [person.full_name, person.id] }, selected: nil), { include_blank: 'Person auswählen...' }, required: true, aria: { label: 'Person auswählen...' } %>
+  <label>
+    Anreise
+    <%= form.datetime_local_field :arrival_date %>
+  </label>
+
+  <label>
+    Abreise
+    <%= form.datetime_local_field :departure_date %>
+  </label>
+
+  <%= form.submit "Anmelden" %>
+<% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   resources :people, only: [:index, :show, :edit, :update, :destroy]
   resources :camps, only: [:index, :show] do
-    post 'registrations', to: 'registrations#create', as: 'new_registrations'
+    resources :registrations, only: [:create, :new, :edit, :index, :show]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
