@@ -26,7 +26,7 @@ class HouseholdsController < ApplicationController
   private
 
   def household_params
-    params.require(:household).permit(:street, :zip_code, :number, :country_code, :town)
+    params.require(:household).permit(:street, :zip_code, :number, :country_code, :town, :recipient)
   end
 
 end

@@ -1,5 +1,6 @@
 place = Place.new(name: "Zinal")
 camp = Camp.new(start_date: Date.new(2024, 10, 6), end_date: Date.new(2024, 10, 12))
+place.save!
 camp.place = place
 camp.save!
 

@@ -1,5 +1,7 @@
 <h1>Neuen Haushalt anlegen</h1>
 <%= form_with model: @household do |f| %>
+  <%= f.label :recipient %>
+  <%= f.text_field :recipient %>
   <%= f.label :street %>
   <%= f.text_field :street %>
   <%= f.label :number %>

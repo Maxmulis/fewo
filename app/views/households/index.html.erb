@@ -3,6 +3,7 @@
 <% @households.each do |household| %>
   <article>
     <header>
+      <h5><%= household.recipient %></h5>
      <%= household.street %> <%= household.number %>
       <%= household.zip_code %> <%= household.town %>
     </header>
