@@ -19,4 +19,6 @@ adult = Person.new(name: "Dinkel", first_name: "Fabian", dob: Date.new(1992, 07,
 adult.household = household
 adult.save!
 
+User.new(email: "test@test.com", password: "password", person: adult, admin: true).save!
+
 puts "Created #{underage.first_name}, aged #{underage.age_at_camp(camp)} in #{camp.place.name}"

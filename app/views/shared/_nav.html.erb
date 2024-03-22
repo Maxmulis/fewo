@@ -1,25 +1,13 @@
 <nav>
   <ul>
-    <li><strong>Ökumenische Ferienwoche</strong></li>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Lager", camps_path %></li>
+    <li><%= link_to "People", people_path %></li>
   </ul>
   <ul>
-   <li>
-      <details role="list">
-        <summary aria-haspopup="listbox">Teilnehmende</summary>
-        <ul role="listbox">
-          <li> <%= link_to 'Alle anzeigen', people_path %></li>
-        </ul>
-      </details>
-    </li>
-    <% c = Camp.next %>
-    <li>
-      <details role="list">
-        <summary aria-haspopup="listbox">Lager</summary>
-        <ul role="listbox">
-          <li> <%= link_to "#{c.place.name} #{c.year}", camp_path(c) %></li>
-        </ul>
-      </details>
-    </li>
-    <li> <%= link_to "Alle Haushalte", households_path, role: "button", class: "outline secondary" %>
+    <li><strong>Ökumenische Ferienwoche CRM</strong></li>
+  </ul>
+  <ul>
+   <li> <%= user_signed_in? ? (link_to "Abmelden", destroy_user_session_path, data: {turbo_method: :delete} ) : (link_to "Anmelden", new_user_session_path) %> </li>
   </ul>
 </nav>
