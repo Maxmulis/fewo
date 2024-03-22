@@ -48,6 +48,7 @@ Rails.application.configure do
     authentication: :login,
     enable_starttls_auto: true
   }
+  config.action_mailer.default_url_options = { host: 'fewo.maxmulis.com', protocol: 'https' }
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

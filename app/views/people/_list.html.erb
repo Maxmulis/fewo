@@ -11,7 +11,11 @@
       <tr>
         <th scope="row"><%= person.name %></th>
         <td><%= person.first_name %></td>
-        <td><%= person.dob.strftime("%d.%m.%Y") %></td><td> <%= link_to "Edit", edit_person_path(person), role: "button", class: "secondary" %></td>
+        <td><%= person.dob.strftime("%d.%m.%Y") %></td>
+        <td> <%= link_to "Edit", edit_person_path(person), role: "button", class: "secondary" %></td>
+        <% if person&.user&.invited_to_sign_up? %>
+          <td> <%= button_to "Invite", invite_user_path(person.user), role: "button", class: "primary", method: :patch %></td >
+        <% end %>
       </tr>
     <% end %>
   </tbody>

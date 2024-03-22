@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   belongs_to :household, optional: true
   has_many :registrations
   has_many :camps, through: :registrations
+  has_one :user
 
   validates :first_name, :name, :dob, presence: true
   validates :first_name, :name, uniqueness: { scope: :dob }
