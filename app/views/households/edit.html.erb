@@ -1,2 +1,15 @@
-<h1>Households#edit</h1>
-<p>Find me in app/views/households/edit.html.erb</p>
+<h1 style=text-align:center><%=@household.recipient %></h1>
+
+<div class="grid">
+  <div>
+    <h2 style=text-align:center>Daten bearbeiten</h2>
+    <%= render partial: 'form', locals: { household: @household, path: household_path(@household) } %>
+  </div>
+
+  <div>
+    <h2 style=text-align:center>People</h2>
+    <%= render partial: 'people/list', locals: { people: @household.people } %>
+  </div>
+</div>
+  <h2 style=text-align:center>Person hinzufügen</h2>
+  <%= render partial: 'people/form', locals: { person: Person.new, household: @household } %>

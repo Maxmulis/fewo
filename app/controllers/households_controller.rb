@@ -12,6 +12,19 @@ class HouseholdsController < ApplicationController
   end
 
   def edit
+    @household = Household.find(params[:id])
+    @people = @household.people
+  end
+
+  def update
+    @household = Household.find(params[:id])
+    if @household.update(household_params)
+      flash[:success] = "Daten wurden aktualisiert."
+      redirect_to edit_household_path(@household)
+    else
+      render :edit
+      flash[:now] = "#{@household.errors.full_messages.join("\n")}"
+    end
   end
 
   def create

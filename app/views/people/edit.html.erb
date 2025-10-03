@@ -1,6 +1,5 @@
 <h1>Person bearbeiten</h1>
   <%= form_with model: @person do |form| %>
-  <div class="grid">
 
     <%= form.label :first_name %>
     <%= form.text_field :first_name, placeholder: "Vorname", value: @person.first_name, required: true %>
@@ -18,7 +17,9 @@
       <%= user_form.label :email %>
       <%= user_form.text_field :email, value: @person.user.email %>
     <% end %>
-
     <%= form.submit %>
-  </div>
+<% end %>
+
+<% if @person&.user&.invited_to_sign_up? %>
+  <%= button_to "Invite", invite_user_path(@person.user), role: "button", class: "primary", method: :patch %>
 <% end %>

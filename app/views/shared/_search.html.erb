@@ -1,0 +1,4 @@
+<%= form_tag(people_path, method: "get", role: "search") do %>
+  <%= search_field_tag :query, params[:query], placeholder: "Search", aria: { label: "Search" } %>
+  <%= submit_tag "Search" %>
+<% end %>

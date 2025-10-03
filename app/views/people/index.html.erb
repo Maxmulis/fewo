@@ -1,2 +1,10 @@
-<h1>Alle Teilnehmenden</h1>
+<div class="grid">
+  <div></div>
+  <div>
+    <h1>Alle Teilnehmenden</h1>
+    <%= render partial: 'shared/search' %>
+  </div>
+  <div></div>
+</div>
+
 <%= render partial: 'list', locals: { people: @people }  %>

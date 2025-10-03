@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :households, only: [:index, :new, :show, :create, :edit] do
+  resources :households, only: [:index, :new, :show, :create, :edit, :update] do
     resources :people, only: [:new, :create]
   end
   resources :people, only: [:index, :show, :edit, :update, :destroy]

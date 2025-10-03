@@ -1,0 +1,15 @@
+<%= form_with model: household, url: path do |f| %>
+  <%= f.label :recipient %>
+  <%= f.text_field :recipient %>
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+  <%= f.label :number %>
+  <%= f.text_field :number %>
+  <%= f.label :zip_code %>
+  <%= f.text_field :zip_code %>
+  <%= f.label :country_code %>
+  <%= f.text_field :country_code %>
+  <%= f.label :town %>
+  <%= f.text_field :town %>
+  <%= f.submit %>
+<% end %>

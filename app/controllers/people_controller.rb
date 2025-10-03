@@ -1,6 +1,15 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all.order(name: :asc)
+    @people = if params[:query].present?
+                Person.where('first_name ILIKE ? OR name ILIKE ?', "%#{params[:query]}%",
+                             "%#{params[:query]}%").order(name: :asc)
+              else
+                Person.all.order(name: :asc)
+              end
+  end
+
+  def show
+    @person = Person.find(params[:id]).preload(:user, :household)
   end
 
   def new
@@ -22,7 +31,7 @@ class PeopleController < ApplicationController
         puts @user.inspect
       end
       flash[:success] = "#{@person.full_name} wurde gespeichert."
-      redirect_to households_path
+      redirect_to household_path(@household)
     else
       flash.now[:error] = "Person konnte nicht gespeichert werden.\n#{@person.errors.full_messages.join("\n")}"
       render :new

@@ -1,7 +1,6 @@
-<main> 
+
   <h1>Neue Person hinzufügen</h1>
     <%= form_with model: [@household, @person] do |form| %>
-  <div class="grid">
 
     <%= form.label :first_name %>
     <%= form.text_field :first_name, placeholder: "Vorname", value: @person.first_name, required: true %>
@@ -21,6 +20,4 @@
     <% end %>
 
     <%= form.submit %>
-  </div>
 <% end %>
-</main>
