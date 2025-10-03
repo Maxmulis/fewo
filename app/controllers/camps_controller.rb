@@ -1,6 +1,5 @@
 class CampsController < ApplicationController
-  def index
-  end
+  def index; end
 
   def show
     @camp = Camp.find(params[:id])

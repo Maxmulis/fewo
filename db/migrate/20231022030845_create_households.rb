@@ -6,7 +6,7 @@ class CreateHouseholds < ActiveRecord::Migration[7.0]
       t.string :number
       t.string :country_code
       t.string :town
-      
+
       t.timestamps
     end
   end

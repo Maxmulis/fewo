@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       redirect_to people_path
     else
       flash.now[:error] = "Einladung konnte nicht gesendet werden.\n#{@user.errors.full_messages.join("\n")}"
-      render "people/index"
+      render 'people/index'
     end
   end
 end

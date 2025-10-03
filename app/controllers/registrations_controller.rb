@@ -1,6 +1,5 @@
 class RegistrationsController < ApplicationController
-  def index
-  end
+  def index; end
 
   def new
     @camp = Camp.find(params[:camp_id])
@@ -10,7 +9,6 @@ class RegistrationsController < ApplicationController
     @people = Person.where.not(
       id: Registration.select(:person_id).where(camp_id: @camp.id)
     )
-
   end
 
   def create
@@ -18,10 +16,10 @@ class RegistrationsController < ApplicationController
     registration = Registration.new(registration_params)
     registration.camp = camp
     if registration.save
-      flash[:success] = "Registration created."
+      flash[:success] = 'Registration created.'
       redirect_to camp_path(camp)
     else
-      flash.now[:error] = "Registration could not be created."
+      flash.now[:error] = 'Registration could not be created.'
       redirect_to request.referer
     end
   end

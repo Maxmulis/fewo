@@ -26,5 +26,4 @@ class Person < ApplicationRecord
   def registered_for?(camp)
     camps.include?(camp)
   end
-
 end
