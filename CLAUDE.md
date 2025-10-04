@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Technology Stack
 
 - **Ruby**: 3.2.2
-- **Rails**: ~7.1
-- **Database**: PostgreSQL
+- **Rails**: ~8.0
+- **Database**: SQLite3
 - **Frontend**: Hotwire (Turbo + Stimulus), esbuild for JavaScript bundling
 - **Authentication**: Devise with devise_invitable
 - **Email**: Brevo (formerly Sendinblue) for production email delivery
@@ -77,7 +77,7 @@ This is a camp/event registration management system for managing households, peo
 
 ### Controllers
 
-- **PeopleController**: Handles person CRUD with search functionality (ILIKE queries on first_name/name). Creates associated User accounts via Devise invitable when email is provided.
+- **PeopleController**: Handles person CRUD with search functionality (LIKE queries on first_name/name). Creates associated User accounts via Devise invitable when email is provided.
 - **HouseholdsController**: Standard CRUD for households
 - **RegistrationsController**: Creates registrations for people to camps
 - **CampsController**: Read-only views for camps
