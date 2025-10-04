@@ -1,0 +1,31 @@
+<div class="grid">
+  <article style="position: relative; padding-bottom: 40px;">
+    <hgroup style="text-align:center">
+      <h2><%= @person.full_name %></h2>
+      <p>
+        Geboren: <%= l(@person.dob, format: :long) %><br>
+        <% if @person.phone.present? %>
+          Telefon: <%= @person.phone %><br>
+        <% end %>
+        <% if @person.user&.email.present? %>
+          Email: <%= @person.user.email %><br>
+        <% end %>
+      </p>
+    </hgroup>
+    <%= link_to "Edit", edit_person_path(@person), style: "position: absolute; bottom: 10px; right: 10px;" %>
+  </article>
+
+  <div>
+    <% if @person.household.present? %>
+      <h3>Haushalt</h3>
+      <%= link_to @person.household.recipient, household_path(@person.household) %>
+    <% end %>
+
+    <% if @person.registrations.any? %>
+      <h3>Anmeldungen</h3>
+      <% @person.registrations.each do |registration| %>
+        <%= link_to registration.camp.place.name, camp_path(registration.camp) %><br>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,15 +1,16 @@
 class PeopleController < ApplicationController
   def index
     @people = if params[:query].present?
-                Person.where('first_name ILIKE ? OR name ILIKE ?', "%#{params[:query]}%",
-                             "%#{params[:query]}%").order(name: :asc)
+                query = "%#{params[:query]}%"
+                Person.where(Person.arel_table[:first_name].matches(query)
+                  .or(Person.arel_table[:name].matches(query))).order(name: :asc)
               else
                 Person.all.order(name: :asc)
               end
   end
 
   def show
-    @person = Person.find(params[:id]).preload(:user, :household)
+    @person = Person.preload(:user, :household).find(params[:id])
   end
 
   def new
