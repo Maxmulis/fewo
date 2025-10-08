@@ -1,4 +1,21 @@
 <h1>Neuen Haushalt anlegen</h1>
+
+<% if @similar_households.any? %>
+  <div class="alert alert-warning">
+    <strong>⚠️ Achtung: Ähnliche Haushalte gefunden</strong>
+    <p>Es existieren bereits Haushalte mit dieser Adresse:</p>
+    <ul>
+      <% @similar_households.each do |household| %>
+        <li>
+          <%= link_to household.recipient, household_path(household) %> -
+          <%= household.full_address %>
+        </li>
+      <% end %>
+    </ul>
+    <p>Wenn Sie einen neuen Haushalt mit anderem Empfänger anlegen möchten, können Sie fortfahren.</p>
+  </div>
+<% end %>
+
 <%= form_with model: @household do |f| %>
   <%= f.label :recipient %>
   <%= f.text_field :recipient %>

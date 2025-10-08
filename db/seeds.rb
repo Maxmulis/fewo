@@ -6,7 +6,7 @@ camp.save!
 
 puts "Created camp from #{camp.start_date} to #{camp.end_date} in #{camp.place.name}"
 
-household = Household.new(street: 'Teststr.', zip_code: '12345', number: '42', country_code: 'CH', town: 'Basel')
+household = Household.new(street: 'Teststr.', zip_code: '12345', number: '42', country_code: 'CH', town: 'Basel', recipient: 'Familie Dinkel')
 household.save!
 
 puts "Created household based in #{household.street}, #{household.town}"
