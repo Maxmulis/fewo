@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :people, only: %i[new create]
   end
   resources :people, only: %i[index show edit update destroy]
-  resources :camps, only: %i[index show] do
+  resources :camps, only: %i[index show new create] do
     resources :registrations, only: %i[create new edit index show]
   end
   devise_for :users

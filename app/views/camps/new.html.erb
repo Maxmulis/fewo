@@ -1,0 +1,33 @@
+<h1>New Camp</h1>
+
+<%= form_with model: @camp do |form| %>
+  <% if @camp.errors.any? %>
+    <div>
+      <h2><%= pluralize(@camp.errors.count, "error") %> prohibited this camp from being saved:</h2>
+      <ul>
+        <% @camp.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :place_id %>
+    <%= form.collection_select :place_id, @places, :id, :name, { prompt: 'Select a place' }, { required: true } %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "Back to camps", camps_path %>
