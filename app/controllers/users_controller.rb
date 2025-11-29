@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def invite
     @user = User.find(params[:id])
+    authorize @user
     if @user.deliver_invitation
       flash[:success] = "#{@user.person.full_name} wurde eingeladen."
       redirect_to people_path

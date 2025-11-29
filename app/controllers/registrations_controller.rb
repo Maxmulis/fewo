@@ -1,9 +1,12 @@
 class RegistrationsController < ApplicationController
-  def index; end
+  def index
+    authorize Registration
+  end
 
   def new
     @camp = Camp.find(params[:camp_id])
     @registration = Registration.new(camp: @camp)
+    authorize @registration
 
     # all people that are not already registered for the camp
     @people = Person.where.not(
@@ -15,6 +18,7 @@ class RegistrationsController < ApplicationController
     camp = Camp.find(params[:camp_id])
     registration = Registration.new(registration_params)
     registration.camp = camp
+    authorize registration
     if registration.save
       flash[:success] = 'Registration created.'
       redirect_to camp_path(camp)

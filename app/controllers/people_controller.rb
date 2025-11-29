@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   def index
+    authorize Person
     @people = if params[:query].present?
                 query = "%#{params[:query]}%"
                 Person.where(Person.arel_table[:first_name].matches(query)
@@ -11,16 +12,19 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.preload(:user, :household).find(params[:id])
+    authorize @person
   end
 
   def new
     @person = Person.new
+    authorize @person
     @person.user = User.new
     @household = Household.find(params[:household_id])
   end
 
   def create
     @person = Person.new(person_params)
+    authorize @person
     @household = Household.find(params[:household_id])
     @person.household = @household
     puts params
@@ -41,12 +45,14 @@ class PeopleController < ApplicationController
 
   def edit
     @person = Person.find(params[:id])
+    authorize @person
     @household = @person.household
     @person.build_user unless @person.user
   end
 
   def update
     @person = Person.find(params[:id])
+    authorize @person
     if @person.update(person_params)
       if user_params[:email].present?
         if @person.user

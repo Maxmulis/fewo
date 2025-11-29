@@ -1,11 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  first_name: MyString
-  dob: 2023-10-21
+admin_person:
+  name: Admin
+  first_name: Test
+  dob: 1980-01-01
+  phone: '+491234567890'
+  household: admin_household
 
-two:
-  name: MyString
-  first_name: MyString
-  dob: 2023-10-21
+regular_person:
+  name: User
+  first_name: Regular
+  dob: 1990-05-15
+  phone: '+430987654321'
+  household: regular_household

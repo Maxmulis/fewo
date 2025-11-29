@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+admin_household:
   street: Musterstrasse
   zip_code: '12345'
   number: '1'
   country_code: DE
   town: Berlin
-  recipient: Familie Müller
+  recipient: Admin Familie
 
-two:
+regular_household:
   street: Beispielweg
   zip_code: '54321'
   number: '42'
   country_code: AT
   town: Wien
-  recipient: Familie Schmidt
+  recipient: Regular Familie
