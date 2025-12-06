@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Ruby**: 3.2.2
 - **Rails**: ~8.0
 - **Database**: SQLite3
-- **Frontend**: Hotwire (Turbo + Stimulus), esbuild for JavaScript bundling
+- **Frontend**: Hotwire (Turbo + Stimulus), Import Maps for JavaScript modules
 - **Authentication**: Devise with devise_invitable
 - **Email**: Brevo (formerly Sendinblue) for production email delivery
 
@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 bin/dev
 ```
-This uses foreman to start both the Rails server (port 3000) and the JavaScript build watcher in parallel.
+This uses foreman to start the Rails server on port 3000.
 
 ### Running Tests
 ```bash
@@ -37,11 +37,12 @@ rails db:reset
 rubocop
 ```
 
-### JavaScript Build
+### JavaScript Management
 ```bash
-yarn build
-yarn build --watch
+bin/importmap pin <package-name>
+bin/importmap unpin <package-name>
 ```
+Uses Import Maps - no build step required. JavaScript modules are loaded directly by the browser.
 
 ## Domain Model & Architecture
 
