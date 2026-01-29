@@ -1,15 +1,40 @@
-<%= form_with model: household, url: path do |f| %>
-  <%= f.label :recipient %>
-  <%= f.text_field :recipient %>
-  <%= f.label :street %>
-  <%= f.text_field :street %>
-  <%= f.label :number %>
-  <%= f.text_field :number %>
-  <%= f.label :zip_code %>
-  <%= f.text_field :zip_code %>
-  <%= f.label :country_code %>
-  <%= f.text_field :country_code %>
-  <%= f.label :town %>
-  <%= f.text_field :town %>
-  <%= f.submit %>
+<%= form_with model: household, url: path, class: "space-y-6" do |f| %>
+  <div>
+    <%= f.label :recipient, "Empfänger", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :recipient, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+    <div class="sm:col-span-3">
+      <%= f.label :street, "Straße", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :street, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :number, "Nr.", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :number, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <%= f.label :zip_code, "PLZ", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :zip_code, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+
+    <div class="sm:col-span-2">
+      <%= f.label :town, "Ort", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :town, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :country_code, "Ländercode", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :country_code, placeholder: "z.B. CH, DE, AT", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
+
+  <div class="flex justify-end space-x-3">
+    <%= link_to "Abbrechen", households_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    <%= f.submit "Haushalt speichern", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
 <% end %>

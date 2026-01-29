@@ -1,15 +1,25 @@
-<h1 style=text-align:center><%=@household.recipient %></h1>
-
-<div class="grid">
-  <div>
-    <h2 style=text-align:center>Daten bearbeiten</h2>
-    <%= render partial: 'form', locals: { household: @household, path: household_path(@household) } %>
+<div class="space-y-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900"><%= @household.recipient %></h1>
   </div>
 
-  <div>
-    <h2 style=text-align:center>People</h2>
-    <%= render partial: 'people/list', locals: { people: @household.people } %>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Household Data -->
+    <div class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Daten bearbeiten</h2>
+      <%= render partial: 'form', locals: { household: @household, path: household_path(@household) } %>
+    </div>
+
+    <!-- People List -->
+    <div class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-gray-900 mb-6">Personen</h2>
+      <%= render partial: 'people/list', locals: { people: @household.people } %>
+    </div>
+  </div>
+
+  <!-- Add Person -->
+  <div class="bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-6">Person hinzufügen</h2>
+    <%= render partial: 'people/form', locals: { person: Person.new, household: @household } %>
   </div>
 </div>
-  <h2 style=text-align:center>Person hinzufügen</h2>
-  <%= render partial: 'people/form', locals: { person: Person.new, household: @household } %>

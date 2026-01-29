@@ -1,18 +1,26 @@
-<table role=grid class="overflow-auto" >
-  <thead>
-    <tr>
-      <th scope="col">Nachname</th>
-      <th scope="col">Vorname</th>
-      <th scope="col">Geburtsdatum</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% people.each do |person| %>
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
       <tr>
-        <th scope="row"><%= link_to person.name, edit_household_path(person.household)  %></th>
-        <td><%= link_to person.first_name, edit_person_path(person) %></td>
-        <td><%= person.dob.strftime("%d.%m.%Y") %></td>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nachname</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vorname</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Geburtsdatum</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <% people.each do |person| %>
+        <tr class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            <%= link_to person.name, edit_household_path(person.household), class: "text-blue-600 hover:text-blue-900" %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <%= link_to person.first_name, edit_person_path(person), class: "text-blue-600 hover:text-blue-900" %>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <%= person.dob.strftime("%d.%m.%Y") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

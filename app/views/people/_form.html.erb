@@ -1,20 +1,34 @@
-  <%= form_with model: [household, person] do |form| %>
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, placeholder: "Vorname", value: person.first_name, required: true %>
+<%= form_with model: [household, person], class: "space-y-6" do |form| %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <%= form.label :first_name, "Vorname", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :first_name, placeholder: "Vorname", value: person.first_name, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
 
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: "Nachname", value: person.name, required: true %>
+    <div>
+      <%= form.label :name, "Nachname", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, placeholder: "Nachname", value: person.name, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+  </div>
 
-    <%= form.label :dob %>
-    <%= form.date_field :dob, required: true %>
+  <div>
+    <%= form.label :dob, "Geburtsdatum", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.date_field :dob, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
 
-    <%= form.label :phone %>
-    <%= form.text_field :phone, placeholder: "Telefon", value: person.phone %>
+  <div>
+    <%= form.label :phone, "Telefon", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :phone, placeholder: "Telefon", value: person.phone, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
 
-    <%= fields_for :user, person.user do |user_form| %>
-      <%= user_form.label :email %>
-      <%= user_form.text_field :email, placeholder: "E-Mail", value: person.user&.email %>
-    <% end %>
+  <%= fields_for :user, person.user do |user_form| %>
+    <div>
+      <%= user_form.label :email, "E-Mail", class: "block text-sm font-medium text-gray-700" %>
+      <%= user_form.text_field :email, placeholder: "E-Mail", value: person.user&.email, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+    </div>
+  <% end %>
 
-    <%= form.submit %>
+  <div class="flex justify-end">
+    <%= form.submit "Person hinzufügen", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
 <% end %>
