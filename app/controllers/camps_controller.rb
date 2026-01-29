@@ -1,6 +1,7 @@
 class CampsController < ApplicationController
   def index
     authorize Camp
+    @camps = Camp.includes(:place).order(start_date: :desc)
   end
 
   def show
