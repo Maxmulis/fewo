@@ -1,25 +1,49 @@
-<h1>Person bearbeiten</h1>
-  <%= form_with model: @person do |form| %>
+<div class="max-w-2xl mx-auto">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900">Person bearbeiten</h1>
+  </div>
 
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, placeholder: "Vorname", value: @person.first_name, required: true %>
+  <div class="bg-white shadow rounded-lg p-6">
+    <%= form_with model: @person, class: "space-y-6" do |form| %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <%= form.label :first_name, "Vorname", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :first_name, placeholder: "Vorname", value: @person.first_name, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
 
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: "Nachname", value: @person.name, required: true %>
+        <div>
+          <%= form.label :name, "Nachname", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :name, placeholder: "Nachname", value: @person.name, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
+      </div>
 
-    <%= form.label :dob %>
-    <%= form.date_field :dob, required: true %>
+      <div>
+        <%= form.label :dob, "Geburtsdatum", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.date_field :dob, required: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+      </div>
 
-    <%= form.label :phone %>
-    <%= form.text_field :phone, placeholder: "Telefon", value: @person.phone %>
+      <div>
+        <%= form.label :phone, "Telefon", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :phone, placeholder: "Telefon", value: @person.phone, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+      </div>
 
-    <%= fields_for :user, @person.user do |user_form| %>
-      <%= user_form.label :email %>
-      <%= user_form.text_field :email, value: @person.user.email %>
+      <%= fields_for :user, @person.user do |user_form| %>
+        <div>
+          <%= user_form.label :email, "E-Mail", class: "block text-sm font-medium text-gray-700" %>
+          <%= user_form.text_field :email, value: @person.user.email, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
+      <% end %>
+
+      <div class="flex justify-end space-x-3">
+        <%= link_to "Abbrechen", people_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        <%= form.submit "Person speichern", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      </div>
     <% end %>
-    <%= form.submit %>
-<% end %>
 
-<% if @person&.user&.invited_to_sign_up? %>
-  <%= button_to "Invite", invite_user_path(@person.user), role: "button", class: "primary", method: :patch %>
-<% end %>
+    <% if @person&.user&.invited_to_sign_up? %>
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <%= button_to "Invite", invite_user_path(@person.user), method: :patch, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+      </div>
+    <% end %>
+  </div>
+</div>
