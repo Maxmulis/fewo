@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_04_165557) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_06_131853) do
+  create_table "camp_team_members", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "camp_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["camp_id"], name: "index_camp_team_members_on_camp_id"
+    t.index ["user_id", "camp_id"], name: "index_camp_team_members_on_user_id_and_camp_id", unique: true
+    t.index ["user_id"], name: "index_camp_team_members_on_user_id"
+  end
+
   create_table "camps", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -109,6 +119,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_04_165557) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "camp_team_members", "camps"
+  add_foreign_key "camp_team_members", "users"
   add_foreign_key "camps", "places"
   add_foreign_key "people", "households"
   add_foreign_key "registrations", "camps"

@@ -1,0 +1,52 @@
+<%
+  # Usage: <%= render 'shared/components/form_input', form: f, field: :email, label: 'Email', type: 'email', required: true %>
+  type ||= 'text'
+  required ||= false
+  placeholder ||= ''
+  autocomplete ||= 'off'
+  additional_class ||= ''
+  help_text ||= nil
+
+  input_class = "input input-bordered w-full #{additional_class}".strip
+%>
+
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text"><%= label %><%= ' *' if required %></span>
+  </label>
+  <% if type == 'textarea' %>
+    <%= form.text_area field,
+        class: "textarea textarea-bordered w-full #{additional_class}".strip,
+        placeholder: placeholder,
+        required: required,
+        autocomplete: autocomplete %>
+  <% elsif type == 'select' %>
+    <%= form.select field, options,
+        { prompt: placeholder },
+        class: "select select-bordered w-full #{additional_class}".strip,
+        required: required %>
+  <% elsif type == 'date' %>
+    <%= form.date_field field,
+        class: input_class,
+        placeholder: placeholder,
+        required: required,
+        autocomplete: autocomplete %>
+  <% elsif type == 'checkbox' %>
+    <label class="label cursor-pointer justify-start gap-2">
+      <%= form.check_box field, class: "checkbox checkbox-primary" %>
+      <span class="label-text"><%= label %></span>
+    </label>
+  <% else %>
+    <%= form.send("#{type}_field", field,
+        class: input_class,
+        placeholder: placeholder,
+        required: required,
+        autocomplete: autocomplete,
+        autofocus: defined?(autofocus) ? autofocus : false) %>
+  <% end %>
+  <% if help_text %>
+    <label class="label">
+      <span class="label-text-alt text-base-content/60"><%= help_text %></span>
+    </label>
+  <% end %>
+</div>

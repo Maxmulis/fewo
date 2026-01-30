@@ -1,18 +1,22 @@
-<table role=grid >
-  <thead>
-    <tr>
-      <th scope="col">Nachname</th>
-      <th scope="col">Vorname</th>
-      <th scope="col">Stadt</th>
-    </tr>
-  </thead>
-  <tbody>
+<% if people.any? %>
+  <%= render 'shared/components/table', headers: ['Nachname', 'Vorname', 'Stadt'], zebra: true do %>
     <% people.each do |person| %>
       <tr>
-        <th scope="row"><%= person.name %></th>
-        <td><%= person.first_name %> <% if person.underage_at_camp?(camp) %><abbr data-tooltip="Alter während des Camps"><%= " (#{person.age_at_camp(camp)})" %></abbr><% end %></td>
+        <td class="font-medium"><%= person.name %></td>
+        <td>
+          <%= person.first_name %>
+          <% if person.underage_at_camp?(camp) %>
+            <%= render 'shared/components/badge',
+                text: person.age_at_camp(camp).to_s,
+                variant: 'warning',
+                size: 'sm',
+                additional_class: 'ml-2' %>
+          <% end %>
+        </td>
         <td><%= person.household.town %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+<% else %>
+  <p class="text-base-content/60 italic">Keine Teilnehmenden angemeldet.</p>
+<% end %>

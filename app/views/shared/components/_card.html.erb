@@ -1,0 +1,24 @@
+<%
+  # Usage: <%= render 'shared/components/card', title: 'Card Title', class: '' do %>
+  #   Card content here
+  # <% end %>
+  title ||= nil
+  actions ||= nil
+  additional_class ||= ''
+%>
+
+<div class="card bg-base-100 shadow-xl <%= additional_class %>">
+  <div class="card-body">
+    <% if title %>
+      <h2 class="card-title"><%= title %></h2>
+    <% end %>
+
+    <%= yield %>
+
+    <% if actions %>
+      <div class="card-actions justify-end">
+        <%= actions.html_safe %>
+      </div>
+    <% end %>
+  </div>
+</div>

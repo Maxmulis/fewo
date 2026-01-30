@@ -12,7 +12,7 @@ class CampPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? || user.team_member_for?(record)
   end
 
   def destroy?

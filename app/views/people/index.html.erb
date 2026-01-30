@@ -1,15 +1,19 @@
 <div class="space-y-6">
   <div class="flex justify-between items-center">
-    <h1 class="text-3xl font-bold text-gray-900">Alle Teilnehmenden</h1>
+    <h1 class="text-4xl font-bold">Alle Teilnehmenden</h1>
   </div>
 
   <!-- Search -->
-  <div class="bg-white shadow rounded-lg p-6">
-    <%= render partial: 'shared/search' %>
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <%= render partial: 'shared/search' %>
+    </div>
   </div>
 
   <!-- People List -->
-  <div class="bg-white shadow rounded-lg p-6">
-    <%= render partial: 'list', locals: { people: @people } %>
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <%= render partial: 'list', locals: { people: @people } %>
+    </div>
   </div>
 </div>

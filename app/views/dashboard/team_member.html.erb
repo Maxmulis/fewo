@@ -1,0 +1,55 @@
+<div class="grid">
+  <div></div>
+  <div>
+    <h1>Team Dashboard</h1>
+
+    <section>
+      <h2>Meine Lager</h2>
+      <% current_user.team_camps.order(start_date: :desc).each do |camp| %>
+        <article>
+          <header>
+            <strong><%= camp.place.name %> <%= camp.year %></strong>
+          </header>
+          <p>
+            <%= camp.start_date.strftime("%d.%m.%Y") %> -
+            <%= camp.end_date.strftime("%d.%m.%Y") %>
+          </p>
+          <p>
+            <strong><%= camp.registrations.count %></strong> Anmeldungen
+          </p>
+          <div class="grid">
+            <div>
+              <%= link_to "Lager anzeigen", camp_path(camp), role: "button" %>
+            </div>
+            <div>
+              <%= link_to "Registrierungen", camp_registrations_path(camp), role: "button", class: "secondary" %>
+            </div>
+          </div>
+        </article>
+      <% end %>
+
+      <% if current_user.team_camps.empty? %>
+        <p><em>Du bist noch keinem Lager als Teammitglied zugewiesen.</em></p>
+      <% end %>
+    </section>
+
+    <% if Camp.next && current_user.team_member_for?(Camp.next) %>
+      <section>
+        <h2>Nächstes Lager</h2>
+        <article>
+          <header>
+            <strong><%= Camp.next.place.name %> <%= Camp.next.year %></strong>
+          </header>
+          <p>
+            <%= Camp.next.start_date.strftime("%d.%m.%Y") %> -
+            <%= Camp.next.end_date.strftime("%d.%m.%Y") %>
+          </p>
+          <p>
+            <strong><%= Camp.next.registrations.count %></strong> Anmeldungen
+          </p>
+        </article>
+      </section>
+    <% end %>
+  </div>
+  <div></div>
+</div>

@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Rails**: ~8.0
 - **Database**: SQLite3
 - **Frontend**: Hotwire (Turbo + Stimulus), Import Maps for JavaScript modules
+- **Styling**: Tailwind CSS v4 with DaisyUI v5.5.14 component library
 - **Authentication**: Devise with devise_invitable
 - **Email**: Brevo (formerly Sendinblue) for production email delivery
 
@@ -43,6 +44,13 @@ bin/importmap pin <package-name>
 bin/importmap unpin <package-name>
 ```
 Uses Import Maps - no build step required. JavaScript modules are loaded directly by the browser.
+
+### CSS/Styling Management
+```bash
+bin/rails tailwindcss:build
+bin/rails tailwindcss:watch
+```
+Tailwind CSS v4 with DaisyUI. Configuration in `config/tailwind.config.js`. Theme customization available through DaisyUI themes.
 
 ## Domain Model & Architecture
 
@@ -87,6 +95,20 @@ This is a camp/event registration management system for managing households, peo
 ### Views
 
 Uses ERB templates with Turbo for SPA-like navigation. Search functionality implemented in shared partials.
+
+**UI Component System**: Reusable DaisyUI components in `app/views/shared/components/`:
+- `_button.html.erb` - Button component with variants (primary, secondary, ghost, etc.)
+- `_card.html.erb` - Card container component
+- `_form_input.html.erb` - Form input component (text, email, password, textarea, select, date, checkbox)
+- `_badge.html.erb` - Badge/label component with variants and sizes
+- `_alert.html.erb` - Alert component (success, error, warning, info) with icons and dismissible option
+- `_table.html.erb` - Table component with optional zebra striping
+
+**Design System**:
+- Primary color: #3b82f6 (blue)
+- Theme: DaisyUI "light" theme with custom primary color
+- Responsive design tested on desktop (1440x900) and mobile (375x667)
+- All views redesigned with consistent DaisyUI components including Devise authentication pages
 
 ### Email Configuration
 

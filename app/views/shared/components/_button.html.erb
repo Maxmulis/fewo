@@ -1,0 +1,28 @@
+<%
+  # Usage: <%= render 'shared/components/button', text: 'Click me', variant: 'primary', size: 'md', type: 'button', class: '' %>
+  # Variants: primary, secondary, accent, ghost, link, info, success, warning, error
+  # Sizes: xs, sm, md, lg
+  variant ||= 'primary'
+  size ||= 'md'
+  type ||= 'button'
+  additional_class ||= ''
+  icon ||= nil
+
+  btn_class = "btn btn-#{variant} btn-#{size} #{additional_class}".strip
+%>
+
+<% if defined?(url) && url.present? %>
+  <%= link_to url, class: btn_class, data: data || {} do %>
+    <% if icon %>
+      <%= icon.html_safe %>
+    <% end %>
+    <%= text %>
+  <% end %>
+<% else %>
+  <button type="<%= type %>" class="<%= btn_class %>" data-<%= (data || {}).map { |k, v| "#{k}=\"#{v}\"" }.join(' ').html_safe %>>
+    <% if icon %>
+      <%= icon.html_safe %>
+    <% end %>
+    <%= text %>
+  </button>
+<% end %>

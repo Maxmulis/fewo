@@ -1,0 +1,20 @@
+<%
+  table_headers = local_assigns.fetch(:headers, [])
+  table_zebra = local_assigns.fetch(:zebra, false)
+  table_additional = local_assigns.fetch(:additional_class, '')
+%><div class="overflow-x-auto">
+  <table class="table <%= 'table-zebra' if table_zebra %> <%= table_additional %>">
+    <% if table_headers.any? %>
+      <thead>
+        <tr>
+          <% table_headers.each do |header| %>
+            <th><%= header %></th>
+          <% end %>
+        </tr>
+      </thead>
+    <% end %>
+    <tbody>
+      <%= yield %>
+    </tbody>
+  </table>
+</div>

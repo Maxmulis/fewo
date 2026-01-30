@@ -19,12 +19,21 @@ class RegistrationsController < ApplicationController
     registration = Registration.new(registration_params)
     registration.camp = camp
     authorize registration
-    if registration.save
-      flash[:success] = 'Registration created.'
-      redirect_to camp_path(camp)
-    else
-      flash.now[:error] = 'Registration could not be created.'
-      redirect_to request.referer
+
+    ActiveRecord::Base.transaction do
+      if registration.save
+        if params[:registration][:make_team_member] == '1' && current_user.admin?
+          person = registration.person
+          if person.user
+            CampTeamMember.create!(camp: camp, user: person.user)
+          end
+        end
+        flash[:success] = 'Registration created.'
+        redirect_to camp_path(camp)
+      else
+        flash.now[:error] = 'Registration could not be created.'
+        redirect_to request.referer
+      end
     end
   end
 

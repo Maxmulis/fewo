@@ -1,0 +1,6 @@
+<%
+  badge_variant = local_assigns.fetch(:variant, 'neutral')
+  badge_size = local_assigns.fetch(:size, 'md')
+  badge_additional = local_assigns.fetch(:additional_class, '')
+  badge_text = local_assigns[:text]
+%><span class="badge badge-<%= badge_variant %> badge-<%= badge_size %> <%= badge_additional %>"><%= badge_text %></span>

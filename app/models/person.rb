@@ -11,6 +11,10 @@ class Person < ApplicationRecord
     "#{first_name} #{name}"
   end
 
+  def age
+    ((Date.today - dob) / 365.25).floor
+  end
+
   def age_at_camp(camp)
     ((camp.start_date - dob) / 365.25).floor
   end

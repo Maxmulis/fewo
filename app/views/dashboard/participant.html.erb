@@ -1,0 +1,67 @@
+<div class="grid">
+  <div></div>
+  <div>
+    <h1>Meine Übersicht</h1>
+
+    <section>
+      <h2>Meine Registrierungen</h2>
+      <% registrations = current_user.person.registrations.includes(:camp).order('camps.start_date DESC') %>
+      <% if registrations.any? %>
+        <% registrations.each do |registration| %>
+          <article>
+            <header>
+              <strong><%= registration.camp.place.name %> <%= registration.camp.year %></strong>
+            </header>
+            <p>
+              <%= registration.camp.start_date.strftime("%d.%m.%Y") %> -
+              <%= registration.camp.end_date.strftime("%d.%m.%Y") %>
+            </p>
+            <p>
+              Anreise: <%= registration.arrival_date.strftime("%d.%m.%Y") %><br>
+              Abreise: <%= registration.departure_date.strftime("%d.%m.%Y") %>
+            </p>
+            <%= link_to "Details anzeigen", camp_registration_path(registration.camp, registration), role: "button", class: "secondary" %>
+          </article>
+        <% end %>
+      <% else %>
+        <p><em>Du hast dich noch für kein Lager angemeldet.</em></p>
+        <%= link_to "Lager anzeigen", camps_path, role: "button" %>
+      <% end %>
+    </section>
+
+    <% if current_user.person.household %>
+      <section>
+        <h2>Mein Haushalt</h2>
+        <article>
+          <header><strong><%= current_user.person.household.recipient %></strong></header>
+          <p>
+            <%= current_user.person.household.street %> <%= current_user.person.household.number %><br>
+            <%= current_user.person.household.zip_code %> <%= current_user.person.household.town %><br>
+            <%= current_user.person.household.country_code %>
+          </p>
+          <p>
+            <strong><%= current_user.person.household.people.count %></strong> Haushaltsmitglieder
+          </p>
+          <%= link_to "Haushalt anzeigen", household_path(current_user.person.household), role: "button", class: "secondary" %>
+        </article>
+      </section>
+    <% end %>
+
+    <% if Camp.next %>
+      <section>
+        <h2>Nächstes Lager</h2>
+        <article>
+          <header>
+            <strong><%= Camp.next.place.name %> <%= Camp.next.year %></strong>
+          </header>
+          <p>
+            <%= Camp.next.start_date.strftime("%d.%m.%Y") %> -
+            <%= Camp.next.end_date.strftime("%d.%m.%Y") %>
+          </p>
+          <%= link_to "Zum Lager", camp_path(Camp.next), role: "button" %>
+        </article>
+      </section>
+    <% end %>
+  </div>
+  <div></div>
+</div>

@@ -8,15 +8,15 @@ class RegistrationPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || record.person == user.person
+    user.admin? || user.team_member_for?(record.camp) || record.person == user.person
   end
 
   def update?
-    user.admin?
+    user.admin? || user.team_member_for?(record.camp)
   end
 
   def destroy?
-    user.admin?
+    user.admin? || user.team_member_for?(record.camp)
   end
 
   class Scope < Scope
