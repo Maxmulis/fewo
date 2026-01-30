@@ -36,7 +36,7 @@ class HouseholdsController < ApplicationController
     @household = Household.find(params[:id])
     authorize @household
     if @household.update(household_params)
-      flash[:success] = 'Daten wurden aktualisiert.'
+      flash[:success] = t('controllers.households.update.success')
       redirect_to edit_household_path(@household)
     else
       @people = @household.people
@@ -57,7 +57,7 @@ class HouseholdsController < ApplicationController
     )
 
     if @household.save
-      flash[:success] = 'Haushalt wurde erfolgreich erstellt.'
+      flash[:success] = t('controllers.households.create.success')
       redirect_to @household
     else
       flash.now[:alert] = @household.errors.full_messages.join(', ')

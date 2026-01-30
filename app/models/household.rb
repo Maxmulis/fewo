@@ -3,13 +3,12 @@ class Household < ApplicationRecord
 
   validates :street, presence: true
   validates :number, presence: true
-  validates :zip_code, presence: true, format: { with: /\A[0-9]{4,10}\z/, message: "must be 4-10 digits" }
+  validates :zip_code, presence: true, format: { with: /\A[0-9]{4,10}\z/ }
   validates :town, presence: true
-  validates :country_code, presence: true, format: { with: /\A[A-Z]{2}\z/, message: "must be 2 uppercase letters (ISO code)" }
+  validates :country_code, presence: true, format: { with: /\A[A-Z]{2}\z/ }
   validates :recipient, presence: true
 
-  validates :street, uniqueness: { scope: [:number, :zip_code, :town, :country_code, :recipient],
-                                    message: "household with this address and recipient already exists" }
+  validates :street, uniqueness: { scope: [:number, :zip_code, :town, :country_code, :recipient] }
 
   before_validation :normalize_country_code
 

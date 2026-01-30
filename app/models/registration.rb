@@ -29,19 +29,19 @@ class Registration < ApplicationRecord
   def person_has_household
     return if person.household
 
-    errors.add(:person, 'must belong to a household to register for a camp.')
+    errors.add(:person, I18n.t('activerecord.errors.models.registration.attributes.person.household_required'))
   end
 
   def underage_requires_adult_household_member
     return unless person.underage_at_camp?(camp) && !adult_household_member_registered?
 
-    errors.add(:person, 'requires an adult member of the household to be already registered if underage.')
+    errors.add(:person, I18n.t('activerecord.errors.models.registration.attributes.person.adult_required'))
   end
 
   def arrival_date_before_departure
     return unless arrival_date && departure_date && arrival_date >= departure_date
 
-    errors.add(:departure_date, 'must be after arrival date.')
+    errors.add(:departure_date, I18n.t('activerecord.errors.models.registration.attributes.departure_date.after_arrival'))
   end
 
   def adult_household_member_registered?

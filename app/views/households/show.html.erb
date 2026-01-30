@@ -1,12 +1,12 @@
 <div class="space-y-6">
   <!-- Page Header -->
   <div class="flex justify-between items-center">
-    <h1 class="text-4xl font-bold">Haushalt</h1>
+    <h1 class="text-4xl font-bold"><%= t('.title') %></h1>
     <%= link_to edit_household_path(@household), class: "btn btn-primary gap-2" do %>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
       </svg>
-      Haushalt bearbeiten
+      <%= t('.edit_household') %>
     <% end %>
   </div>
 
@@ -41,12 +41,12 @@
   <!-- Members Section -->
   <div class="space-y-4">
     <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-bold">Haushaltsmitglieder</h2>
+      <h2 class="text-2xl font-bold"><%= t('.members') %></h2>
       <%= link_to new_household_person_path(@household), class: "btn btn-primary gap-2" do %>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
         </svg>
-        Person hinzufügen
+        <%= t('.add_member') %>
       <% end %>
     </div>
 
@@ -66,7 +66,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                       <span class="text-base-content/70"><%= person.dob.strftime("%d.%m.%Y") %></span>
-                      <span class="text-base-content/70">(<%= person.age %> Jahre)</span>
+                      <span class="text-base-content/70">(<%= person.age %> <%= t('.age') %>)</span>
                     </div>
                     <% if person.phone.present? %>
                       <div class="flex items-center gap-2 text-sm">
@@ -93,7 +93,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  Bearbeiten
+                  <%= t('common.actions.edit') %>
                 <% end %>
               </div>
             </div>
@@ -106,14 +106,14 @@
           <svg class="h-16 w-16 text-base-content/40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
-          <h3 class="card-title">Keine Haushaltsmitglieder</h3>
-          <p class="text-base-content/70">Füge die erste Person zu diesem Haushalt hinzu.</p>
+          <h3 class="card-title"><%= t('.no_members') %></h3>
+          <p class="text-base-content/70"><%= t('.no_members_description') %></p>
           <div class="card-actions">
             <%= link_to new_household_person_path(@household), class: "btn btn-primary gap-2" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
-              Person hinzufügen
+              <%= t('.add_member') %>
             <% end %>
           </div>
         </div>

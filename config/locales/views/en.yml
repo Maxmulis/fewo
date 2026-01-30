@@ -1,0 +1,169 @@
+en:
+  # Devise views
+  devise:
+    sessions:
+      new:
+        title: "Sign in"
+        remember_me: "Remember me"
+        submit: "Sign in"
+        or: "OR"
+    passwords:
+      new:
+        title: "Forgot your password?"
+        description: "Enter your email address and we'll send you instructions to reset your password."
+        submit: "Send instructions"
+      edit:
+        title: "Change password"
+        new_password: "New password"
+        confirm_password: "Confirm password"
+        submit: "Change password"
+    registrations:
+      new:
+        title: "Sign up"
+        submit: "Sign up"
+      edit:
+        title: "Edit account"
+        current_password_help: "We need your current password to confirm the changes"
+        leave_blank: "Leave blank if you don't want to change it"
+        update: "Update"
+        cancel_account: "Cancel account"
+        cancel_confirm: "Are you sure?"
+        unhappy: "Unhappy?"
+    confirmations:
+      new:
+        title: "Resend confirmation instructions"
+        submit: "Resend confirmation instructions"
+    unlocks:
+      new:
+        title: "Resend unlock instructions"
+        submit: "Resend unlock instructions"
+    shared:
+      links:
+        sign_in: "Sign in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot your password?"
+        confirmation: "Didn't receive confirmation instructions?"
+        unlock: "Didn't receive unlock instructions?"
+
+  # People views
+  people:
+    index:
+      title: "All Participants"
+      search_placeholder: "Search names..."
+      no_people: "No people found."
+    show:
+      title: "Person"
+      born: "Born"
+      phone: "Phone"
+      email: "Email"
+      household: "Household"
+      registrations: "Registrations"
+      no_household: "No household membership"
+      no_registrations: "No registrations"
+      send_invitation: "Send invitation"
+    form:
+      first_name: "First name"
+      last_name: "Last name"
+      date_of_birth: "Date of birth"
+      phone: "Phone"
+      email: "Email"
+      add_person: "Add person"
+      save_person: "Save person"
+
+  # Households views
+  households:
+    index:
+      title: "All Households"
+      new_household: "New Household"
+      no_households: "No households available"
+      no_households_description: "Create the first household to get started."
+      and_more: "and %{count} more..."
+      details: "Details"
+    show:
+      title: "Household"
+      edit_household: "Edit household"
+      address: "Address"
+      members: "Household Members"
+      add_member: "Add person"
+      no_members: "No household members"
+      no_members_description: "Add the first person to this household."
+      age: "years"
+    edit:
+      title: "Edit data"
+      people_title: "People"
+      add_person_title: "Add person"
+    form:
+      recipient: "Recipient"
+      street: "Street"
+      number: "No."
+      zip_code: "ZIP"
+      town: "Town"
+      country_code: "Country code"
+      country_placeholder: "e.g. CH, DE, AT"
+      save: "Save household"
+    new:
+      title: "Create New Household"
+      duplicate_warning_title: "Similar households found"
+      duplicate_warning_description: "Households with this address already exist:"
+      duplicate_warning_continue: "If you want to create a new household with a different recipient, you can proceed."
+
+  # Camps views
+  camps:
+    index:
+      title: "Camps"
+      new_camp: "New Camp"
+      no_camps_title: "No camps available"
+      no_camps_description: "Create your first camp to get started."
+      create_first_camp: "Create New Camp"
+      show_details: "Show details"
+    show:
+      title: "Camp"
+      team_members: "Team Members"
+      participants: "Registered Participants"
+      new_registration: "New Registration"
+      add_team_member: "Add team member"
+      no_team_members: "No team members assigned."
+      no_participants: "No participants registered."
+      remove: "Remove"
+      remove_confirm: "Are you sure?"
+      user: "User"
+      select_user: "Select user"
+      registered: "registered"
+    new:
+      title: "Create New Camp"
+      select_place: "Select place"
+      save_camp: "Save camp"
+    list:
+      last_name: "Last name"
+      first_name: "First name"
+      city: "City"
+
+  # Registrations views
+  registrations:
+    index:
+      title: "Registrations"
+    new:
+      title: "New Registration"
+      subtitle: "Register person for %{camp_name} %{year}"
+      person: "Person"
+      person_select_prompt: "Select a person..."
+      arrival_date: "Arrival date"
+      departure_date: "Departure date"
+      make_team_member: "Add as team member"
+      team_member_description: "The person will have access to camp management"
+      helper_text: "Select a person from the list"
+      submit: "Register"
+
+  # Dashboard
+  dashboard:
+    index:
+      title: "Dashboard"
+      my_registrations: "My Registrations"
+      upcoming_camps: "Upcoming Camps"
+      no_registrations: "No registrations"
+
+  # Shared components
+  shared:
+    search:
+      placeholder: "Search..."
+      button: "Search"

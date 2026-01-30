@@ -14,7 +14,7 @@
       <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
       </svg>
-      Neue Anmeldung
+      <%= t('.new_registration') %>
     <% end %>
   </div>
 
@@ -22,20 +22,20 @@
     <!-- Team Members Section -->
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
-        <h2 class="card-title text-2xl">Teammitglieder</h2>
+        <h2 class="card-title text-2xl"><%= t('.team_members') %></h2>
 
         <% if @camp.team_members.any? %>
-          <%= render 'shared/components/table', headers: ['Name', 'Email', current_user.admin? ? 'Aktionen' : nil].compact, zebra: true do %>
+          <%= render 'shared/components/table', headers: [t('activerecord.attributes.person.name'), t('activerecord.attributes.user.email'), current_user.admin? ? t('common.actions.delete') : nil].compact, zebra: true do %>
             <% @camp.team_members.each do |team_member| %>
               <tr>
                 <td class="font-medium"><%= team_member.person.first_name %> <%= team_member.person.name %></td>
                 <td><%= team_member.email %></td>
                 <% if current_user.admin? %>
                   <td>
-                    <%= button_to 'Entfernen',
+                    <%= button_to t('.remove'),
                         camp_camp_team_member_path(@camp, @camp.camp_team_members.find_by(user: team_member)),
                         method: :delete,
-                        data: { confirm: 'Sicher?' },
+                        data: { confirm: t('.remove_confirm') },
                         class: 'btn btn-error btn-outline btn-sm' %>
                   </td>
                 <% end %>
@@ -43,27 +43,27 @@
             <% end %>
           <% end %>
         <% else %>
-          <p class="text-base-content/60 italic">Keine Teammitglieder zugewiesen.</p>
+          <p class="text-base-content/60 italic"><%= t('.no_team_members') %></p>
         <% end %>
 
         <% if current_user.admin? %>
           <div class="collapse collapse-arrow bg-base-200 mt-4">
             <input type="checkbox" />
-            <div class="collapse-title font-medium">Teammitglied hinzufügen</div>
+            <div class="collapse-title font-medium"><%= t('.add_team_member') %></div>
             <div class="collapse-content">
               <%= form_with model: CampTeamMember.new, url: camp_camp_team_members_path(@camp), method: :post, class: "space-y-4 pt-4" do |f| %>
                 <div class="form-control">
                   <label class="label">
-                    <span class="label-text">Benutzer</span>
+                    <span class="label-text"><%= t('.user') %></span>
                   </label>
                   <%= f.collection_select :user_id,
                       User.includes(:person).where.not(id: @camp.team_members.pluck(:id)).sort_by { |u| u.person.first_name },
                       :id,
                       ->(user) { "#{user.person.first_name} #{user.person.name} (#{user.email})" },
-                      { prompt: 'Benutzer auswählen' },
+                      { prompt: t('.select_user') },
                       class: "select select-bordered w-full" %>
                 </div>
-                <%= f.submit 'Hinzufügen', class: "btn btn-primary" %>
+                <%= f.submit t('common.actions.add'), class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>
@@ -75,12 +75,12 @@
   <!-- Registered Participants Section -->
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
-      <h2 class="card-title text-2xl">Angemeldete Teilnehmende</h2>
+      <h2 class="card-title text-2xl"><%= t('.participants') %></h2>
       <div class="flex items-center gap-2 mb-4">
         <svg class="h-5 w-5 text-base-content/70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
-        <span><span class="font-semibold text-primary"><%= @people.count %></span> <%= @people.count == 1 ? 'Person' : 'Personen' %> angemeldet</span>
+        <span><span class="font-semibold text-primary"><%= @people.count %></span> <%= t('people.count', count: @people.count) %> <%= t('.registered') %></span>
       </div>
 
       <%= render partial: 'list', locals: { people: @people, camp: @camp } %>

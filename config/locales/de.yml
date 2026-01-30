@@ -1,0 +1,116 @@
+de:
+  # Common translations used across the app
+  common:
+    actions:
+      save: "Speichern"
+      cancel: "Abbrechen"
+      edit: "Bearbeiten"
+      delete: "Löschen"
+      add: "Hinzufügen"
+      search: "Suchen"
+      back: "Zurück"
+      confirm: "Bestätigen"
+      show: "Anzeigen"
+      create: "Erstellen"
+      update: "Aktualisieren"
+    labels:
+      yes: "Ja"
+      no: "Nein"
+    time:
+      years: "Jahre"
+
+  # Navigation
+  navigation:
+    app_title: "Ökumenische Ferienwoche"
+    dashboard: "Dashboard"
+    camps: "Lager"
+    all_camps: "Alle Lager"
+    new_camp: "Neues Lager"
+    participants: "Teilnehmende"
+    all_participants: "Alle Teilnehmenden"
+    new_household: "Neuer Haushalt"
+    household: "Mein Haushalt"
+    my_camps: "Meine Lager"
+    my_registrations: "Meine Registrierungen"
+    account: "Konto"
+    profile: "Profil"
+    logout: "Abmelden"
+    login: "Anmelden"
+
+  # Controllers
+  controllers:
+    application:
+      not_authorized: "Sie sind nicht berechtigt, diese Aktion durchzuführen."
+    people:
+      create:
+        success: "Person wurde erfolgreich erstellt."
+        error: "Person konnte nicht erstellt werden."
+      update:
+        success: "Person wurde erfolgreich aktualisiert."
+        error: "Person konnte nicht aktualisiert werden."
+      destroy:
+        success: "Person wurde erfolgreich gelöscht."
+    households:
+      create:
+        success: "Haushalt wurde erfolgreich erstellt."
+        error: "Haushalt konnte nicht erstellt werden."
+      update:
+        success: "Haushalt wurde erfolgreich aktualisiert."
+        error: "Haushalt konnte nicht aktualisiert werden."
+      destroy:
+        success: "Haushalt wurde erfolgreich gelöscht."
+    camps:
+      create:
+        success: "Lager wurde erfolgreich erstellt."
+      update:
+        success: "Lager wurde erfolgreich aktualisiert."
+      destroy:
+        success: "Lager wurde erfolgreich gelöscht."
+    registrations:
+      create:
+        success: "Anmeldung wurde erfolgreich erstellt."
+        error: "Anmeldung konnte nicht erstellt werden."
+      destroy:
+        success: "Anmeldung wurde erfolgreich gelöscht."
+    team_members:
+      create:
+        success: "Teammitglied wurde erfolgreich hinzugefügt."
+        error: "Teammitglied konnte nicht hinzugefügt werden."
+      destroy:
+        success: "Teammitglied wurde erfolgreich entfernt."
+    users:
+      invite:
+        success: "Einladung wurde erfolgreich versendet."
+        error: "Einladung konnte nicht versendet werden."
+
+  # Date and time formats
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%d.%m.%y"
+      long: "%d. %B %Y"
+    abbr_day_names: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+    abbr_month_names: [~, "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+    day_names: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+    month_names: [~, "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      short: "%d.%m. %H:%M"
+      long: "%d. %B %Y %H:%M"
+    am: "vormittags"
+    pm: "nachmittags"
+
+  # Pluralization
+  people:
+    count:
+      zero: "Keine Personen"
+      one: "1 Person"
+      other: "%{count} Personen"
+
+  registrations:
+    count:
+      zero: "Keine Anmeldungen"
+      one: "1 Anmeldung"
+      other: "%{count} Anmeldungen"

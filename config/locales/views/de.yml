@@ -1,0 +1,169 @@
+de:
+  # Devise views
+  devise:
+    sessions:
+      new:
+        title: "Anmelden"
+        remember_me: "Angemeldet bleiben"
+        submit: "Anmelden"
+        or: "ODER"
+    passwords:
+      new:
+        title: "Passwort vergessen?"
+        description: "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen Anweisungen zum Zurücksetzen Ihres Passworts."
+        submit: "Anweisungen senden"
+      edit:
+        title: "Passwort ändern"
+        new_password: "Neues Passwort"
+        confirm_password: "Passwort bestätigen"
+        submit: "Passwort ändern"
+    registrations:
+      new:
+        title: "Registrieren"
+        submit: "Registrieren"
+      edit:
+        title: "Konto bearbeiten"
+        current_password_help: "Wir benötigen Ihr aktuelles Passwort, um die Änderungen zu bestätigen"
+        leave_blank: "Leer lassen, wenn Sie es nicht ändern möchten"
+        update: "Aktualisieren"
+        cancel_account: "Konto löschen"
+        cancel_confirm: "Sind Sie sicher?"
+        unhappy: "Unzufrieden?"
+    confirmations:
+      new:
+        title: "Bestätigungsanweisungen erneut senden"
+        submit: "Bestätigungsanweisungen erneut senden"
+    unlocks:
+      new:
+        title: "Entsperranweisungen erneut senden"
+        submit: "Entsperranweisungen erneut senden"
+    shared:
+      links:
+        sign_in: "Anmelden"
+        sign_up: "Registrieren"
+        forgot_password: "Passwort vergessen?"
+        confirmation: "Keine Bestätigungsanweisungen erhalten?"
+        unlock: "Keine Entsperranweisungen erhalten?"
+
+  # People views
+  people:
+    index:
+      title: "Alle Teilnehmenden"
+      search_placeholder: "Namen suchen..."
+      no_people: "Keine Personen gefunden."
+    show:
+      title: "Person"
+      born: "Geboren"
+      phone: "Telefon"
+      email: "E-Mail"
+      household: "Haushalt"
+      registrations: "Anmeldungen"
+      no_household: "Keine Haushaltszugehörigkeit"
+      no_registrations: "Keine Anmeldungen"
+      send_invitation: "Einladung senden"
+    form:
+      first_name: "Vorname"
+      last_name: "Nachname"
+      date_of_birth: "Geburtsdatum"
+      phone: "Telefon"
+      email: "E-Mail"
+      add_person: "Person hinzufügen"
+      save_person: "Person speichern"
+
+  # Households views
+  households:
+    index:
+      title: "Alle Haushalte"
+      new_household: "Neuer Haushalt"
+      no_households: "Keine Haushalte vorhanden"
+      no_households_description: "Erstelle den ersten Haushalt, um loszulegen."
+      and_more: "und %{count} weitere..."
+      details: "Details"
+    show:
+      title: "Haushalt"
+      edit_household: "Haushalt bearbeiten"
+      address: "Adresse"
+      members: "Haushaltsmitglieder"
+      add_member: "Person hinzufügen"
+      no_members: "Keine Haushaltsmitglieder"
+      no_members_description: "Füge die erste Person zu diesem Haushalt hinzu."
+      age: "Jahre"
+    edit:
+      title: "Daten bearbeiten"
+      people_title: "Personen"
+      add_person_title: "Person hinzufügen"
+    form:
+      recipient: "Empfänger"
+      street: "Straße"
+      number: "Nr."
+      zip_code: "PLZ"
+      town: "Ort"
+      country_code: "Ländercode"
+      country_placeholder: "z.B. CH, DE, AT"
+      save: "Haushalt speichern"
+    new:
+      title: "Neuen Haushalt anlegen"
+      duplicate_warning_title: "Ähnliche Haushalte gefunden"
+      duplicate_warning_description: "Es existieren bereits Haushalte mit dieser Adresse:"
+      duplicate_warning_continue: "Wenn Sie einen neuen Haushalt mit anderem Empfänger anlegen möchten, können Sie fortfahren."
+
+  # Camps views
+  camps:
+    index:
+      title: "Lager"
+      new_camp: "Neues Lager"
+      no_camps_title: "Keine Lager vorhanden"
+      no_camps_description: "Erstelle dein erstes Lager, um loszulegen."
+      create_first_camp: "Neues Lager erstellen"
+      show_details: "Details anzeigen"
+    show:
+      title: "Lager"
+      team_members: "Teammitglieder"
+      participants: "Angemeldete Teilnehmende"
+      new_registration: "Neue Anmeldung"
+      add_team_member: "Teammitglied hinzufügen"
+      no_team_members: "Keine Teammitglieder zugewiesen."
+      no_participants: "Keine Teilnehmenden angemeldet."
+      remove: "Entfernen"
+      remove_confirm: "Sicher?"
+      user: "Benutzer"
+      select_user: "Benutzer auswählen"
+      registered: "angemeldet"
+    new:
+      title: "Neues Lager anlegen"
+      select_place: "Ort auswählen"
+      save_camp: "Lager speichern"
+    list:
+      last_name: "Nachname"
+      first_name: "Vorname"
+      city: "Stadt"
+
+  # Registrations views
+  registrations:
+    index:
+      title: "Anmeldungen"
+    new:
+      title: "Neue Anmeldung"
+      subtitle: "Person für %{camp_name} %{year} anmelden"
+      person: "Person"
+      person_select_prompt: "Person auswählen..."
+      arrival_date: "Anreise"
+      departure_date: "Abreise"
+      make_team_member: "Als Teammitglied hinzufügen"
+      team_member_description: "Die Person erhält Zugriff auf die Lagerverwaltung"
+      helper_text: "Wählen Sie eine Person aus der Liste aus"
+      submit: "Anmelden"
+
+  # Dashboard
+  dashboard:
+    index:
+      title: "Dashboard"
+      my_registrations: "Meine Anmeldungen"
+      upcoming_camps: "Kommende Lager"
+      no_registrations: "Keine Anmeldungen"
+
+  # Shared components
+  shared:
+    search:
+      placeholder: "Suchen..."
+      button: "Suchen"

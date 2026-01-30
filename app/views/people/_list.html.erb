@@ -1,4 +1,4 @@
-<%= render 'shared/components/table', headers: ['Nachname', 'Vorname', 'Geburtsdatum'], zebra: true do %>
+<%= render 'shared/components/table', headers: [t('activerecord.attributes.person.name'), t('activerecord.attributes.person.first_name'), t('activerecord.attributes.person.dob')], zebra: true do %>
   <% people.each do |person| %>
     <tr>
       <td class="font-medium">

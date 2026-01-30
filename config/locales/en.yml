@@ -1,33 +1,97 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  # Common translations used across the app
+  common:
+    actions:
+      save: "Save"
+      cancel: "Cancel"
+      edit: "Edit"
+      delete: "Delete"
+      add: "Add"
+      search: "Search"
+      back: "Back"
+      confirm: "Confirm"
+      show: "Show"
+      create: "Create"
+      update: "Update"
+    labels:
+      yes: "Yes"
+      no: "No"
+    time:
+      years: "years"
+
+  # Navigation
+  navigation:
+    app_title: "Ecumenical Holiday Week"
+    dashboard: "Dashboard"
+    camps: "Camps"
+    all_camps: "All Camps"
+    new_camp: "New Camp"
+    participants: "Participants"
+    all_participants: "All Participants"
+    new_household: "New Household"
+    household: "My Household"
+    my_camps: "My Camps"
+    my_registrations: "My Registrations"
+    account: "Account"
+    profile: "Profile"
+    logout: "Logout"
+    login: "Login"
+
+  # Controllers
+  controllers:
+    application:
+      not_authorized: "You are not authorized to perform this action."
+    people:
+      create:
+        success: "Person was successfully created."
+        error: "Person could not be created."
+      update:
+        success: "Person was successfully updated."
+        error: "Person could not be updated."
+      destroy:
+        success: "Person was successfully deleted."
+    households:
+      create:
+        success: "Household was successfully created."
+        error: "Household could not be created."
+      update:
+        success: "Household was successfully updated."
+        error: "Household could not be updated."
+      destroy:
+        success: "Household was successfully deleted."
+    camps:
+      create:
+        success: "Camp was successfully created."
+      update:
+        success: "Camp was successfully updated."
+      destroy:
+        success: "Camp was successfully deleted."
+    registrations:
+      create:
+        success: "Registration was successfully created."
+        error: "Registration could not be created."
+      destroy:
+        success: "Registration was successfully deleted."
+    team_members:
+      create:
+        success: "Team member was successfully added."
+        error: "Team member could not be added."
+      destroy:
+        success: "Team member was successfully removed."
+    users:
+      invite:
+        success: "Invitation was successfully sent."
+        error: "Invitation could not be sent."
+
+  # Pluralization
+  people:
+    count:
+      zero: "No people"
+      one: "1 person"
+      other: "%{count} people"
+
+  registrations:
+    count:
+      zero: "No registrations"
+      one: "1 registration"
+      other: "%{count} registrations"

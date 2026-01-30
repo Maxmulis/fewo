@@ -52,6 +52,17 @@ bin/rails tailwindcss:watch
 ```
 Tailwind CSS v4 with DaisyUI. Configuration in `config/tailwind.config.js`. Theme customization available through DaisyUI themes.
 
+**Important**: DaisyUI requires npm dependencies for CSS compilation:
+```bash
+npm install
+```
+This is needed for:
+- Local development (CSS builds during `bin/dev`)
+- Running tests (Rails precompiles assets before tests)
+- Deployment (during `assets:precompile`)
+
+**Note**: Import Maps handle JavaScript (no build step), while npm is only needed for CSS compilation via Tailwind. The compiled CSS is static and doesn't require `node_modules` at runtime.
+
 ## Domain Model & Architecture
 
 This is a camp/event registration management system for managing households, people, and their registrations to camps.
@@ -122,3 +133,96 @@ Uses Rails default testing framework (Minitest) with:
 - Model tests in `test/models/`
 - Controller tests in `test/controllers/`
 - System tests with Capybara and Selenium
+
+## Internationalization (i18n)
+
+**Default locale**: German (de)
+**Available locales**: German (de), English (en)
+
+### Locale File Structure
+```
+config/locales/
+├── de.yml                    # Main German translations
+├── en.yml                    # Main English translations
+├── devise.de.yml            # German Devise translations
+├── devise.en.yml            # English Devise translations
+├── devise_invitable.de.yml  # German devise_invitable
+├── devise_invitable.en.yml  # English devise_invitable
+├── models/
+│   ├── de.yml              # Model attributes & validations (German)
+│   └── en.yml              # Model attributes & validations (English)
+└── views/
+    ├── de.yml              # View-specific translations (German)
+    └── en.yml              # View-specific translations (English)
+```
+
+### Language Switching
+
+Users can switch languages via:
+1. Language dropdown in navigation (DE/EN)
+2. URL parameter: `?locale=en` or `?locale=de`
+3. Language preference persists in session
+
+Implementation in `ApplicationController`:
+- `set_locale` before_action sets locale from params > session > browser header
+- `default_url_options` adds locale parameter to all URLs
+
+### Translation Key Organization
+
+**Common namespace** - Shared across app:
+```yaml
+common:
+  actions: { save, cancel, edit, delete, add, search, back, confirm, show, create, update }
+  labels: { yes, no }
+  time: { years }
+```
+
+**ActiveRecord namespace** - Model attributes and errors:
+```ruby
+t('activerecord.attributes.person.first_name')  # "Vorname" / "First name"
+t('activerecord.errors.models.registration.attributes.person.household_required')
+```
+
+**View-specific namespaces** - Using lazy lookup:
+```ruby
+# In app/views/people/index.html.erb
+t('.title')  # Resolves to people.index.title
+```
+
+**Controller namespace** - Flash messages:
+```ruby
+flash[:success] = t('controllers.people.create.success')
+```
+
+### i18n Features
+
+1. **Pluralization**:
+   ```ruby
+   t('people.count', count: 0)  # "Keine Personen" / "No people"
+   t('people.count', count: 1)  # "1 Person" / "1 person"
+   t('people.count', count: 5)  # "5 Personen" / "5 people"
+   ```
+
+2. **Interpolation**:
+   ```ruby
+   t('registrations.new.subtitle', camp_name: @camp.place.name, year: @camp.year)
+   # "Person für Testlager 2026 anmelden" / "Register person for Test Camp 2026"
+   ```
+
+3. **Date Formatting**:
+   - German format: `31.01.2026` (DD.MM.YYYY)
+   - English format: `January 31, 2026`
+
+4. **Missing Translation Detection**:
+   - Enabled in development and test environments
+   - Raises errors for missing translation keys to catch issues early
+
+### Adding New Translations
+
+When adding new features:
+1. Add translation keys to appropriate locale files (de.yml and en.yml)
+2. Use `t()` helper in views and controllers
+3. For model attributes, use `activerecord.attributes.model.attribute` namespace
+4. Test in both German and English locales
+
+See `I18N_IMPLEMENTATION_SUMMARY.md` for complete implementation details.

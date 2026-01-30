@@ -1,0 +1,108 @@
+de:
+  activerecord:
+    models:
+      person:
+        one: "Person"
+        other: "Personen"
+      household:
+        one: "Haushalt"
+        other: "Haushalte"
+      registration:
+        one: "Anmeldung"
+        other: "Anmeldungen"
+      camp:
+        one: "Lager"
+        other: "Lager"
+      place:
+        one: "Ort"
+        other: "Orte"
+      team_member:
+        one: "Teammitglied"
+        other: "Teammitglieder"
+      user:
+        one: "Benutzer"
+        other: "Benutzer"
+
+    attributes:
+      person:
+        first_name: "Vorname"
+        name: "Nachname"
+        dob: "Geburtsdatum"
+        phone: "Telefon"
+        email: "E-Mail"
+        household: "Haushalt"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      household:
+        recipient: "Empfänger"
+        street: "Straße"
+        number: "Nummer"
+        zip_code: "PLZ"
+        town: "Ort"
+        country_code: "Ländercode"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      registration:
+        person: "Person"
+        camp: "Lager"
+        arrival_date: "Anreise"
+        departure_date: "Abreise"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      camp:
+        place: "Ort"
+        start_date: "Startdatum"
+        end_date: "Enddatum"
+        year: "Jahr"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      place:
+        name: "Name"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      team_member:
+        person: "Person"
+        camp: "Lager"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+      user:
+        email: "E-Mail"
+        password: "Passwort"
+        password_confirmation: "Passwort bestätigen"
+        current_password: "Aktuelles Passwort"
+        remember_me: "Angemeldet bleiben"
+        created_at: "Erstellt am"
+        updated_at: "Aktualisiert am"
+
+    errors:
+      models:
+        person:
+          attributes:
+            email:
+              taken: "wird bereits verwendet"
+              invalid: "ist keine gültige E-Mail-Adresse"
+            dob:
+              blank: "darf nicht leer sein"
+
+        household:
+          attributes:
+            zip_code:
+              invalid: "muss 4-10 Ziffern enthalten"
+            country_code:
+              invalid: "muss aus 2 Großbuchstaben bestehen (ISO-Code)"
+            street:
+              taken: "Ein Haushalt mit dieser Adresse und diesem Empfänger existiert bereits"
+
+        registration:
+          attributes:
+            person:
+              household_required: "muss zu einem Haushalt gehören, um sich für ein Lager anzumelden"
+              adult_required: "benötigt ein erwachsenes Mitglied des Haushalts, das bereits angemeldet ist, wenn die Person minderjährig ist"
+            departure_date:
+              after_arrival: "muss nach dem Anreisedatum liegen"

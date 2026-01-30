@@ -6,9 +6,9 @@ class CampTeamMembersController < ApplicationController
     authorize @camp_team_member
 
     if @camp_team_member.save
-      redirect_to @camp, notice: 'Teammitglied wurde erfolgreich hinzugefügt.'
+      redirect_to @camp, notice: t('controllers.team_members.create.success')
     else
-      redirect_to @camp, alert: 'Teammitglied konnte nicht hinzugefügt werden.'
+      redirect_to @camp, alert: t('controllers.team_members.create.error')
     end
   end
 
@@ -17,7 +17,7 @@ class CampTeamMembersController < ApplicationController
     authorize @camp_team_member
 
     @camp_team_member.destroy
-    redirect_to @camp, notice: 'Teammitglied wurde entfernt.'
+    redirect_to @camp, notice: t('controllers.team_members.destroy.success')
   end
 
   private

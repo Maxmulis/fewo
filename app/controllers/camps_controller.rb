@@ -22,7 +22,7 @@ class CampsController < ApplicationController
     @camp = Camp.new(camp_params)
     authorize @camp
     if @camp.save
-      redirect_to @camp, notice: 'Camp was successfully created.'
+      redirect_to @camp, notice: t('controllers.camps.create.success')
     else
       @places = Place.all
       render :new, status: :unprocessable_entity

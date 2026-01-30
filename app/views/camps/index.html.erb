@@ -1,13 +1,13 @@
 <div class="space-y-6">
   <!-- Header -->
   <div class="flex justify-between items-center">
-    <h1 class="text-4xl font-bold">Lager</h1>
+    <h1 class="text-4xl font-bold"><%= t('.title') %></h1>
     <% if policy(Camp).create? %>
       <%= link_to new_camp_path, class: "btn btn-primary gap-2" do %>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
-        Neues Lager
+        <%= t('.new_camp') %>
       <% end %>
     <% end %>
   </div>
@@ -35,12 +35,12 @@
                 <svg class="h-5 w-5 text-base-content/70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
-                <span><span class="font-semibold text-primary"><%= camp.registrations.count %></span> Anmeldungen</span>
+                <span><span class="font-semibold text-primary"><%= camp.registrations.count %></span> <%= t('registrations.count', count: camp.registrations.count) %></span>
               </div>
             </div>
 
             <div class="card-actions justify-end">
-              <%= link_to "Details anzeigen", camp_path(camp), class: "btn btn-primary btn-outline btn-block" %>
+              <%= link_to t('.show_details'), camp_path(camp), class: "btn btn-primary btn-outline btn-block" %>
             </div>
           </div>
         </div>
@@ -52,15 +52,15 @@
         <svg class="h-16 w-16 text-base-content/40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
         </svg>
-        <h3 class="card-title">Keine Lager vorhanden</h3>
-        <p class="text-base-content/70">Erstelle dein erstes Lager, um loszulegen.</p>
+        <h3 class="card-title"><%= t('.no_camps_title') %></h3>
+        <p class="text-base-content/70"><%= t('.no_camps_description') %></p>
         <% if policy(Camp).create? %>
           <div class="card-actions">
-            <%= link_to "Neues Lager erstellen", new_camp_path, class: "btn btn-primary gap-2" do %>
+            <%= link_to new_camp_path, class: "btn btn-primary gap-2" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
               </svg>
-              Neues Lager erstellen
+              <%= t('.create_first_camp') %>
             <% end %>
           </div>
         <% end %>

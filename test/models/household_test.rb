@@ -55,9 +55,11 @@ class HouseholdTest < ActiveSupport::TestCase
   end
 
   test 'validates zip_code format' do
-    household = Household.new(valid_attributes.merge(zip_code: 'ABC123'))
-    assert_not household.valid?
-    assert_includes household.errors[:zip_code], 'must be 4-10 digits'
+    I18n.with_locale(:en) do
+      household = Household.new(valid_attributes.merge(zip_code: 'ABC123'))
+      assert_not household.valid?
+      assert_includes household.errors[:zip_code], 'must be 4-10 digits'
+    end
   end
 
   test 'accepts valid zip_code formats' do
@@ -68,9 +70,11 @@ class HouseholdTest < ActiveSupport::TestCase
   end
 
   test 'validates country_code format' do
-    household = Household.new(valid_attributes.merge(country_code: 'DEU'))
-    assert_not household.valid?
-    assert_includes household.errors[:country_code], 'must be 2 uppercase letters (ISO code)'
+    I18n.with_locale(:en) do
+      household = Household.new(valid_attributes.merge(country_code: 'DEU'))
+      assert_not household.valid?
+      assert_includes household.errors[:country_code], 'must be 2 uppercase letters (ISO code)'
+    end
   end
 
   test 'normalizes country_code to uppercase' do
@@ -79,10 +83,12 @@ class HouseholdTest < ActiveSupport::TestCase
   end
 
   test 'prevents duplicate addresses with same recipient' do
-    Household.create!(valid_attributes)
-    duplicate = Household.new(valid_attributes)
-    assert_not duplicate.valid?
-    assert_includes duplicate.errors[:street], 'household with this address and recipient already exists'
+    I18n.with_locale(:en) do
+      Household.create!(valid_attributes)
+      duplicate = Household.new(valid_attributes)
+      assert_not duplicate.valid?
+      assert_includes duplicate.errors[:street], 'household with this address and recipient already exists'
+    end
   end
 
   test 'allows same address with different recipients' do

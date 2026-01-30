@@ -6,20 +6,20 @@
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Household Data -->
     <div class="bg-white shadow rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-gray-900 mb-6">Daten bearbeiten</h2>
+      <h2 class="text-xl font-semibold text-gray-900 mb-6"><%= t('.title') %></h2>
       <%= render partial: 'form', locals: { household: @household, path: household_path(@household) } %>
     </div>
 
     <!-- People List -->
     <div class="bg-white shadow rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-gray-900 mb-6">Personen</h2>
+      <h2 class="text-xl font-semibold text-gray-900 mb-6"><%= t('.people_title') %></h2>
       <%= render partial: 'people/list', locals: { people: @household.people } %>
     </div>
   </div>
 
   <!-- Add Person -->
   <div class="bg-white shadow rounded-lg p-6">
-    <h2 class="text-xl font-semibold text-gray-900 mb-6">Person hinzufügen</h2>
+    <h2 class="text-xl font-semibold text-gray-900 mb-6"><%= t('.add_person_title') %></h2>
     <%= render partial: 'people/form', locals: { person: Person.new, household: @household } %>
   </div>
 </div>

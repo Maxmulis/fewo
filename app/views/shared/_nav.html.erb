@@ -9,27 +9,27 @@
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <% if current_user %>
-          <li><%= link_to "Dashboard", dashboard_index_path %></li>
+          <li><%= link_to t('navigation.dashboard'), dashboard_index_path %></li>
 
           <% if current_user.admin? %>
             <li>
-              <span class="menu-title">Lager</span>
+              <span class="menu-title"><%= t('navigation.camps') %></span>
               <ul>
-                <li><%= link_to "Alle Lager", camps_path %></li>
-                <li><%= link_to "Neues Lager", new_camp_path %></li>
+                <li><%= link_to t('navigation.all_camps'), camps_path %></li>
+                <li><%= link_to t('navigation.new_camp'), new_camp_path %></li>
               </ul>
             </li>
             <li>
-              <span class="menu-title">Teilnehmende</span>
+              <span class="menu-title"><%= t('navigation.participants') %></span>
               <ul>
-                <li><%= link_to "Alle Teilnehmenden", people_path %></li>
-                <li><%= link_to "Neuer Haushalt", new_household_path %></li>
+                <li><%= link_to t('navigation.all_participants'), people_path %></li>
+                <li><%= link_to t('navigation.new_household'), new_household_path %></li>
               </ul>
             </li>
           <% elsif current_user.team_member? %>
             <% if team_member_camps.any? %>
               <li>
-                <span class="menu-title">Meine Lager</span>
+                <span class="menu-title"><%= t('navigation.my_camps') %></span>
                 <ul>
                   <% team_member_camps.each do |camp| %>
                     <li><%= link_to "#{camp.place.name} #{camp.year}", camp_path(camp) %></li>
@@ -37,26 +37,26 @@
                 </ul>
               </li>
             <% end %>
-            <li><%= link_to "Alle Lager", camps_path %></li>
+            <li><%= link_to t('navigation.all_camps'), camps_path %></li>
           <% else %>
-            <li><%= link_to "Meine Registrierungen", dashboard_index_path %></li>
+            <li><%= link_to t('navigation.my_registrations'), dashboard_index_path %></li>
             <% if current_user.person.household %>
-              <li><%= link_to "Mein Haushalt", household_path(current_user.person.household) %></li>
+              <li><%= link_to t('navigation.household'), household_path(current_user.person.household) %></li>
             <% end %>
-            <li><%= link_to "Lager", camps_path %></li>
+            <li><%= link_to t('navigation.camps'), camps_path %></li>
           <% end %>
-          <li class="menu-title">Konto</li>
-          <li><%= link_to "Profil", edit_person_path(current_user.person) %></li>
-          <li><%= button_to "Abmelden", destroy_user_session_path, method: :delete, class: "text-error" %></li>
+          <li class="menu-title"><%= t('navigation.account') %></li>
+          <li><%= link_to t('navigation.profile'), edit_person_path(current_user.person) %></li>
+          <li><%= button_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: "text-error" %></li>
         <% else %>
-          <li><%= link_to "Anmelden", new_user_session_path %></li>
+          <li><%= link_to t('navigation.login'), new_user_session_path %></li>
         <% end %>
       </ul>
     </div>
 
     <!-- Logo/Brand -->
     <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
-      Ökumenische Ferienwoche
+      <%= t('navigation.app_title') %>
     <% end %>
   </div>
 
@@ -64,24 +64,24 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
       <% if current_user %>
-        <li><%= link_to "Dashboard", dashboard_index_path, class: current_page?(dashboard_index_path) ? 'active' : '' %></li>
+        <li><%= link_to t('navigation.dashboard'), dashboard_index_path, class: current_page?(dashboard_index_path) ? 'active' : '' %></li>
 
         <% if current_user.admin? %>
           <li>
             <details>
-              <summary>Lager</summary>
+              <summary><%= t('navigation.camps') %></summary>
               <ul class="p-2 z-10 bg-base-100 rounded-t-none">
-                <li><%= link_to "Alle Lager", camps_path %></li>
-                <li><%= link_to "Neues Lager", new_camp_path %></li>
+                <li><%= link_to t('navigation.all_camps'), camps_path %></li>
+                <li><%= link_to t('navigation.new_camp'), new_camp_path %></li>
               </ul>
             </details>
           </li>
           <li>
             <details>
-              <summary>Teilnehmende</summary>
+              <summary><%= t('navigation.participants') %></summary>
               <ul class="p-2 z-10 bg-base-100 rounded-t-none">
-                <li><%= link_to "Alle Teilnehmenden", people_path %></li>
-                <li><%= link_to "Neuer Haushalt", new_household_path %></li>
+                <li><%= link_to t('navigation.all_participants'), people_path %></li>
+                <li><%= link_to t('navigation.new_household'), new_household_path %></li>
               </ul>
             </details>
           </li>
@@ -89,7 +89,7 @@
           <% if team_member_camps.any? %>
             <li>
               <details>
-                <summary>Meine Lager</summary>
+                <summary><%= t('navigation.my_camps') %></summary>
                 <ul class="p-2 z-10 bg-base-100 rounded-t-none">
                   <% team_member_camps.each do |camp| %>
                     <li><%= link_to "#{camp.place.name} #{camp.year}", camp_path(camp) %></li>
@@ -98,13 +98,13 @@
               </details>
             </li>
           <% end %>
-          <li><%= link_to "Alle Lager", camps_path, class: current_page?(camps_path) ? 'active' : '' %></li>
+          <li><%= link_to t('navigation.all_camps'), camps_path, class: current_page?(camps_path) ? 'active' : '' %></li>
         <% else %>
-          <li><%= link_to "Meine Registrierungen", dashboard_index_path, class: current_page?(dashboard_index_path) ? 'active' : '' %></li>
+          <li><%= link_to t('navigation.my_registrations'), dashboard_index_path, class: current_page?(dashboard_index_path) ? 'active' : '' %></li>
           <% if current_user.person.household %>
-            <li><%= link_to "Mein Haushalt", household_path(current_user.person.household), class: current_page?(household_path(current_user.person.household)) ? 'active' : '' %></li>
+            <li><%= link_to t('navigation.household'), household_path(current_user.person.household), class: current_page?(household_path(current_user.person.household)) ? 'active' : '' %></li>
           <% end %>
-          <li><%= link_to "Lager", camps_path, class: current_page?(camps_path) ? 'active' : '' %></li>
+          <li><%= link_to t('navigation.camps'), camps_path, class: current_page?(camps_path) ? 'active' : '' %></li>
         <% end %>
       <% end %>
     </ul>
@@ -112,6 +112,20 @@
 
   <!-- User Menu -->
   <div class="navbar-end">
+    <!-- Language Switcher -->
+    <div class="dropdown dropdown-end mr-2">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
+        <%= I18n.locale.to_s.upcase %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-32">
+        <li><%= link_to "Deutsch", url_for(locale: :de), class: I18n.locale == :de ? 'active' : '' %></li>
+        <li><%= link_to "English", url_for(locale: :en), class: I18n.locale == :en ? 'active' : '' %></li>
+      </ul>
+    </div>
+
     <% if current_user %>
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
@@ -121,12 +135,12 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li class="menu-title"><%= current_user.person.full_name %></li>
-          <li><%= link_to "Profil", edit_person_path(current_user.person) %></li>
-          <li><%= button_to "Abmelden", destroy_user_session_path, method: :delete, class: "text-error" %></li>
+          <li><%= link_to t('navigation.profile'), edit_person_path(current_user.person) %></li>
+          <li><%= button_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: "text-error" %></li>
         </ul>
       </div>
     <% else %>
-      <%= link_to "Anmelden", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to t('navigation.login'), new_user_session_path, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

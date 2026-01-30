@@ -28,10 +28,10 @@ class RegistrationsController < ApplicationController
             CampTeamMember.create!(camp: camp, user: person.user)
           end
         end
-        flash[:success] = 'Registration created.'
+        flash[:success] = t('controllers.registrations.create.success')
         redirect_to camp_path(camp)
       else
-        flash.now[:error] = 'Registration could not be created.'
+        flash.now[:error] = t('controllers.registrations.create.error')
         redirect_to request.referer
       end
     end

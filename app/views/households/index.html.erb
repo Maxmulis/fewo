@@ -1,12 +1,12 @@
 <div class="space-y-6">
   <!-- Header -->
   <div class="flex justify-between items-center">
-    <h1 class="text-4xl font-bold">Alle Haushalte</h1>
+    <h1 class="text-4xl font-bold"><%= t('.title') %></h1>
     <%= link_to new_household_path, class: "btn btn-primary gap-2" do %>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
       </svg>
-      Neuer Haushalt
+      <%= t('.new_household') %>
     <% end %>
   </div>
 
@@ -36,7 +36,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 <span class="font-semibold text-primary"><%= household.people.count %></span>
-                <span><%= household.people.count == 1 ? 'Person' : 'Personen' %></span>
+                <span><%= t('people.count', count: household.people.count) %></span>
               </div>
 
               <% if household.people.any? %>
@@ -45,7 +45,7 @@
                     <li class="text-base-content/70">• <%= person.full_name %></li>
                   <% end %>
                   <% if household.people.count > 3 %>
-                    <li class="text-base-content/60 italic">und <%= household.people.count - 3 %> weitere...</li>
+                    <li class="text-base-content/60 italic"><%= t('.and_more', count: household.people.count - 3) %></li>
                   <% end %>
                 </ul>
               <% end %>
@@ -53,10 +53,10 @@
 
             <div class="card-actions justify-end mt-4 gap-2">
               <%= link_to household_path(household), class: "btn btn-primary btn-sm" do %>
-                Details
+                <%= t('.details') %>
               <% end %>
               <%= link_to edit_household_path(household), class: "btn btn-primary btn-outline btn-sm" do %>
-                Bearbeiten
+                <%= t('common.actions.edit') %>
               <% end %>
             </div>
           </div>
@@ -69,14 +69,14 @@
         <svg class="h-16 w-16 text-base-content/40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
-        <h3 class="card-title">Keine Haushalte vorhanden</h3>
-        <p class="text-base-content/70">Erstelle den ersten Haushalt, um loszulegen.</p>
+        <h3 class="card-title"><%= t('.no_households') %></h3>
+        <p class="text-base-content/70"><%= t('.no_households_description') %></p>
         <div class="card-actions">
           <%= link_to new_household_path, class: "btn btn-primary gap-2" do %>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
-            Neuer Haushalt
+            <%= t('.new_household') %>
           <% end %>
         </div>
       </div>

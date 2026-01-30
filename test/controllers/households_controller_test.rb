@@ -40,7 +40,7 @@ class HouseholdsControllerTest < ActionDispatch::IntegrationTest
       post households_url, params: valid_household_params
     end
 
-    assert_redirected_to household_path(Household.last)
+    assert_redirected_to household_path(Household.last, locale: :de)
     assert_equal 'Haushalt wurde erfolgreich erstellt.', flash[:success]
   end
 
@@ -92,7 +92,8 @@ class HouseholdsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_response :success
-    assert_select 'div.alert-warning', /Ähnliche Haushalte/
+    assert_select 'div.bg-yellow-50'
+    assert_select 'h3', text: I18n.t('households.new.duplicate_warning_title')
     assert_select 'a', text: 'Familie Müller'
   end
 
@@ -119,7 +120,7 @@ class HouseholdsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to household_path(Household.last)
+    assert_redirected_to household_path(Household.last, locale: :de)
   end
 
   test 'should get edit' do
@@ -150,7 +151,7 @@ class HouseholdsControllerTest < ActionDispatch::IntegrationTest
       household: { recipient: 'Neue Familie' }
     }
 
-    assert_redirected_to edit_household_path(household)
+    assert_redirected_to edit_household_path(household, locale: :de)
     household.reload
     assert_equal 'Neue Familie', household.recipient
   end

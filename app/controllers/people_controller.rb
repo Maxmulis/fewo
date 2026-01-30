@@ -35,10 +35,10 @@ class PeopleController < ApplicationController
         end
         puts @user.inspect
       end
-      flash[:success] = "#{@person.full_name} wurde gespeichert."
+      flash[:success] = t('controllers.people.create.success')
       redirect_to household_path(@household)
     else
-      flash.now[:error] = "Person konnte nicht gespeichert werden.\n#{@person.errors.full_messages.join("\n")}"
+      flash.now[:error] = t('controllers.people.create.error')
       render :new
     end
   end
@@ -63,10 +63,10 @@ class PeopleController < ApplicationController
           end
         end
       end
-      flash[:success] = "#{@person.full_name} wurde gespeichert."
+      flash[:success] = t('controllers.people.update.success')
       redirect_to households_path
     else
-      flash.now[:error] = "Person konnte nicht gespeichert werden.\n#{@person.errors.full_messages.join("\n")}"
+      flash.now[:error] = t('controllers.people.update.error')
       render :edit
     end
   end

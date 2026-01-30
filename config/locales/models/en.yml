@@ -1,0 +1,108 @@
+en:
+  activerecord:
+    models:
+      person:
+        one: "Person"
+        other: "People"
+      household:
+        one: "Household"
+        other: "Households"
+      registration:
+        one: "Registration"
+        other: "Registrations"
+      camp:
+        one: "Camp"
+        other: "Camps"
+      place:
+        one: "Place"
+        other: "Places"
+      team_member:
+        one: "Team Member"
+        other: "Team Members"
+      user:
+        one: "User"
+        other: "Users"
+
+    attributes:
+      person:
+        first_name: "First name"
+        name: "Last name"
+        dob: "Date of birth"
+        phone: "Phone"
+        email: "Email"
+        household: "Household"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      household:
+        recipient: "Recipient"
+        street: "Street"
+        number: "Number"
+        zip_code: "ZIP code"
+        town: "Town"
+        country_code: "Country code"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      registration:
+        person: "Person"
+        camp: "Camp"
+        arrival_date: "Arrival date"
+        departure_date: "Departure date"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      camp:
+        place: "Place"
+        start_date: "Start date"
+        end_date: "End date"
+        year: "Year"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      place:
+        name: "Name"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      team_member:
+        person: "Person"
+        camp: "Camp"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+        remember_me: "Remember me"
+        created_at: "Created at"
+        updated_at: "Updated at"
+
+    errors:
+      models:
+        person:
+          attributes:
+            email:
+              taken: "is already taken"
+              invalid: "is not a valid email address"
+            dob:
+              blank: "can't be blank"
+
+        household:
+          attributes:
+            zip_code:
+              invalid: "must be 4-10 digits"
+            country_code:
+              invalid: "must be 2 uppercase letters (ISO code)"
+            street:
+              taken: "household with this address and recipient already exists"
+
+        registration:
+          attributes:
+            person:
+              household_required: "must belong to a household to register for a camp"
+              adult_required: "requires an adult member of the household to be already registered if underage"
+            departure_date:
+              after_arrival: "must be after arrival date"
