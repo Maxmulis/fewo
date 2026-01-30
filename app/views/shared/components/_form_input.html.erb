@@ -1,52 +1,42 @@
-<%
-  # Usage: <%= render 'shared/components/form_input', form: f, field: :email, label: 'Email', type: 'email', required: true %>
-  type ||= 'text'
-  required ||= false
-  placeholder ||= ''
-  autocomplete ||= 'off'
-  additional_class ||= ''
-  help_text ||= nil
-
-  input_class = "input input-bordered w-full #{additional_class}".strip
-%>
-
+<%# Usage: render 'shared/components/form_input', form: f, field: :email, label: 'Email', type: 'email', required: true %>
 <div class="form-control w-full">
   <label class="label">
-    <span class="label-text"><%= label %><%= ' *' if required %></span>
+    <span class="label-text"><%= label %><%= ' *' if local_assigns.fetch(:required, false) %></span>
   </label>
-  <% if type == 'textarea' %>
+  <% case local_assigns.fetch(:type, 'text') %>
+  <% when 'textarea' %>
     <%= form.text_area field,
-        class: "textarea textarea-bordered w-full #{additional_class}".strip,
-        placeholder: placeholder,
-        required: required,
-        autocomplete: autocomplete %>
-  <% elsif type == 'select' %>
-    <%= form.select field, options,
-        { prompt: placeholder },
-        class: "select select-bordered w-full #{additional_class}".strip,
-        required: required %>
-  <% elsif type == 'date' %>
+        class: "textarea textarea-bordered w-full #{local_assigns.fetch(:additional_class, '')}".strip,
+        placeholder: local_assigns.fetch(:placeholder, ''),
+        required: local_assigns.fetch(:required, false),
+        autocomplete: local_assigns.fetch(:autocomplete, 'off') %>
+  <% when 'select' %>
+    <%= form.select field, local_assigns.fetch(:options, []),
+        { prompt: local_assigns.fetch(:placeholder, '') },
+        class: "select select-bordered w-full #{local_assigns.fetch(:additional_class, '')}".strip,
+        required: local_assigns.fetch(:required, false) %>
+  <% when 'date' %>
     <%= form.date_field field,
-        class: input_class,
-        placeholder: placeholder,
-        required: required,
-        autocomplete: autocomplete %>
-  <% elsif type == 'checkbox' %>
+        class: "input input-bordered w-full #{local_assigns.fetch(:additional_class, '')}".strip,
+        placeholder: local_assigns.fetch(:placeholder, ''),
+        required: local_assigns.fetch(:required, false),
+        autocomplete: local_assigns.fetch(:autocomplete, 'off') %>
+  <% when 'checkbox' %>
     <label class="label cursor-pointer justify-start gap-2">
       <%= form.check_box field, class: "checkbox checkbox-primary" %>
       <span class="label-text"><%= label %></span>
     </label>
   <% else %>
-    <%= form.send("#{type}_field", field,
-        class: input_class,
-        placeholder: placeholder,
-        required: required,
-        autocomplete: autocomplete,
-        autofocus: defined?(autofocus) ? autofocus : false) %>
+    <%= form.send("#{local_assigns.fetch(:type, 'text')}_field", field,
+        class: "input input-bordered w-full #{local_assigns.fetch(:additional_class, '')}".strip,
+        placeholder: local_assigns.fetch(:placeholder, ''),
+        required: local_assigns.fetch(:required, false),
+        autocomplete: local_assigns.fetch(:autocomplete, 'off'),
+        autofocus: local_assigns.fetch(:autofocus, false)) %>
   <% end %>
-  <% if help_text %>
+  <% if local_assigns.fetch(:help_text, nil) %>
     <label class="label">
-      <span class="label-text-alt text-base-content/60"><%= help_text %></span>
+      <span class="label-text-alt text-base-content/60"><%= local_assigns.fetch(:help_text, nil) %></span>
     </label>
   <% end %>
 </div>
